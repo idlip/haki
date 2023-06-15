@@ -101,7 +101,6 @@ Since regions cover everywhere, you can customize it to your preference.
    #+begin_src emacs-lisp
      (add-hook 'post-command-hook #'haki-meow-mode-line)
 #+end_src
-   
 
 * 🔗 Contributing
 There's always the space for improvement.
