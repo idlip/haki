@@ -233,7 +233,7 @@ Tip: Use 'VictorMono' or 'Maple Mono'.")
    `(default                   ((,class :background ,bg-main :foreground ,fg-main)))
 
 ;;; -- Base
-   `(mode-line ((,class :background ,bg-dim :box (:line-width (2 . 1) :color ,cursor) :weight medium :height 0.9)))
+   `(mode-line       ((,class :background ,bg-dim :box (:line-width (2 . 1) :color ,cursor) :weight medium :height 0.9)))
 
    ;; Structural
    `(bold                      ((,class :weight bold)))
@@ -250,9 +250,9 @@ Tip: Use 'VictorMono' or 'Maple Mono'.")
    `(button                    ((,class :inherit (bold link) :foreground ,c-operator)))
 
    ;; --- Minibuffer
-   `(completions-annotations ((,class :inherit italic :foreground ,blue-5)))
-   `(completions-common-part ((,class :foreground ,heading-1)))
-   `(completions-first-difference ((,class )))
+   `(completions-annotations         ((,class :inherit italic :foreground ,blue-5)))
+   `(completions-common-part         ((,class :foreground ,heading-1)))
+   `(completions-first-difference    ((,class )))
 
    ;; Modeline
    `(mode-line-inactive        		((,class :inherit mode-line :foreground ,fg-dim :background ,bg-inactive)))
