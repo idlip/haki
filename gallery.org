@@ -1,9 +1,8 @@
 #+title: Haki: Gallery Show
 #+author: Dilip
 
-
 ** Magit
-[[https://github.com/idlip/haki/assets/117019901/0f2a94bb-90dc-4a49-913d-a9872cee5214]]
+[[https://github.com/idlip/haki/assets/117019901/0f2a94bb-90dc-4a49-913d-a9872cee5214][]]
 
 ** Org
 [[https://github.com/idlip/haki/assets/117019901/92708805-931f-4cd6-b047-47082bca3761]]
