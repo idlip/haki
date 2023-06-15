@@ -1,0 +1,22 @@
+#+title: Haki: Gallery Show
+#+author: Dilip
+
+
+** Magit
+[[https://github.com/idlip/haki/assets/117019901/0f2a94bb-90dc-4a49-913d-a9872cee5214]]
+
+** Org
+[[https://github.com/idlip/haki/assets/117019901/92708805-931f-4cd6-b047-47082bca3761]]
+
+** Eww
+[[https://github.com/idlip/haki/assets/117019901/7f9f37ed-76f1-40ce-ab36-433535c22d1d]]
+
+** Elfeed
+[[https://github.com/idlip/haki/assets/117019901/ab49372e-bf1f-4fcf-89f9-017fa4450352]]
+[[https://github.com/idlip/haki/assets/117019901/5b058006-3557-4497-93fc-afa16ab65247]]
+
+** Completion Everywhere
+[[https://github.com/idlip/haki/assets/117019901/15603ef9-389d-415b-80b6-061fc68cd3b3]]
+
+** Ement
+[[https://github.com/idlip/haki/assets/117019901/1716b480-c5df-48c9-8848-02f52b4b9033]]
