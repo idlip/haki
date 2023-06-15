@@ -1,0 +1,119 @@
+#+title: Haki - A Pleasant, Modern Theme
+#+author: Dilip
+
+
+* 🔖 Info
+This is not any normal theme that looks "huh".
+
+This is tailored for emacs in modern sense, with each element to look distinguishable and go in sync.
+
+There is not much science or principle here, /it's just a theme and its your eyes, if they go in sync, whoami to stop?/
+
+** ⚓ Modes Supported
+#+HTML: <details> <summary> Packages & Modes </summary>
+- Vertico, Corfu, Consult, Orderless, Marginalia
+- Magit, diff
+- Treesit (tree-sitter)
+- Org-Modern
+- Elfeed
+- Info-mode
+- Mingus
+- Which-key
+- Org-mode
+- Markdown-mode
+- Eww, shr
+- Doom-Modeline
+- Rainbow-Delimiters
+- Jinx
+- Meow
+- Avy, sdcv
+- Vterm
+
+#+begin_center
+/I dont use other packages, PR is well appreciated for other modes./
+You can open an issue for requesting a ~mode~ or ~package~. I will try to implement it, if community likes to.
+#+end_center
+
+#+HTML: </details>
+
+** Gallery
+
+[[file:gallery.org][Eye candy Gallery]]
+
+* 🎨 Installation
+/By time I will make it available in Melpa/
+Until then please do clone and add it to your path.
+#+begin_src sh
+git clone https://github.com/idlip/haki ~/.config/emacs/var/themes/haki-theme
+#+end_src
+
+#+begin_src emacs-lisp
+  ;; Option 1: Simply do (make sure it is in 'custom-theme-directory')
+  (setq haki-region "#2e8b6d")
+  (load-theme 'haki t)
+
+  ;; Option 2: with 'use-package'
+  (use-package haki-theme
+    :load-path "~/.config/emacs/var/themes/haki-theme"
+    :config
+    (setq haki-region "#2e8b6d"
+    ;; If you skip setting this, it will use 'default' font.
+    haki-heading-font "Comic Mono"
+    haki-sans-font "Iosevka Comfy Motion"
+    haki-title-font "Impress BT"
+    haki-link-font "VictorMono Nerd Font" ;; or Maple Mono looks good
+    haki-code-font "Maple Mono") ;; inline code/verbatim (org,markdown..)
+
+  ;; For meow users (change border of mode-line according to meow states)
+    (add-hook 'post-command-hook #'haki-meow-mode-line)
+
+    (load-theme 'haki t))
+
+#+end_src
+
+* 💲 Tips
+Since its new, there is not much, but I do have one surprise!
+Since regions cover everywhere, you can customize it to your preference.
+
+  - Use ~M-x #'haki-change-region~ to choose and set a color for =haki-region=.
+
+  To make it persist on sessions, you need to add ~(setq haki-region "#hexvalue")~
+
+  - Emacs on Terminal should support 24-bit colors.
+  It displays all colors for me on ~foot~ terminal.
+  If you have issue, You can try setting 'COLORTERM' environment variable to "true-color" : 
+ ~export COLORTERM=truecolor~
+
+  - Heading level will be similar everywhere (/org,markdown,eww,shr,info,news../), every heading faces inherit corresponding org-level.
+    Editing org-level face will follow to all modes having heading, define your choice of font for heading.
+
+    Eg: 
+  #+begin_src emacs-lisp
+    ; Font for each level
+    (set-face-attribute 'org-level-1 nil :font "Impress BT")
+
+    ; Add fg and a face
+    (set-face-attribute 'org-level-1 nil :font "Excalibur Stone" :foreground "#ab82ff")
+
+#+end_src
+
+ - For meow users, there is ~#'haki-meow-mode-line~ which can change the border (=:box=) of the mode-line according to the meow-states, with this hook:
+   #+begin_src emacs-lisp
+     (add-hook 'post-command-hook #'haki-meow-mode-line)
+#+end_src
+   
+
+* 🔗 Contributing
+There's always the space for improvement.
+ + If you want to open an *issue*, Please attach a pic of the issue state.
+ + If you want to make a *PR*, Please attach pic of before and after effects.
+
+   This will allow me to consider and evaluate.
+
+* 🎖️ Inspiration
+  - [[https://github.com/protesilaos/modus-themes][Prot's themes]] - I'm a fan of ~modus-vivendi~, but it lacked something for me, it simply lead me to create this theme. Nonetheless, Modus themes is a *Masterpiece*.
+  - [[https://github.com/minad][Minad]] - If it were not for his packages, I wouldn't have loved Emacs this much to create a theme.
+    Absolute gem! Most of the theme's customization is based on his packages.
+
+    -----
+
