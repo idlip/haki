@@ -2,7 +2,7 @@
 
 ;; Copyright (C) 2023 Dilip
 
-;; Title: Haki
+;; Title: Haki-theme
 ;; Author: Dilip
 ;; Maintainer: Dilip
 ;; URL: https://github.com/idlip/haki
@@ -953,5 +953,5 @@ Tip: Use 'VictorMono' or 'Maple Mono'.")
   (add-to-list 'custom-theme-load-path
                (file-name-as-directory (file-name-directory load-file-name))))
 
-(provide-theme 'haki)
+(provide-theme 'haki-theme)
 ;;; haki-theme.el ends here
