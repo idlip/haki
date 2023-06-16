@@ -64,8 +64,8 @@ git clone https://github.com/idlip/haki ~/.config/emacs/var/themes/haki-theme
     haki-link-font "VictorMono Nerd Font" ;; or Maple Mono looks good
     haki-code-font "Maple Mono") ;; inline code/verbatim (org,markdown..)
 
-  ;; For meow users (change border of mode-line according to meow states)
-    (add-hook 'post-command-hook #'haki-meow-mode-line)
+  ;; For meow/evil users (change border of mode-line according to meow states)
+    (add-hook 'post-command-hook #'haki-modal-mode-line)
 
     (load-theme 'haki t))
 
@@ -97,9 +97,9 @@ Since regions cover everywhere, you can customize it to your preference.
 
 #+end_src
 
- - For meow users, there is ~#'haki-meow-mode-line~ which can change the border (=:box=) of the mode-line according to the meow-states, with this hook:
+ - For meow users, there is ~#'haki-modal-mode-line~ which can change the border (=:box=) of the mode-line according to the meow-states, with this hook:
    #+begin_src emacs-lisp
-     (add-hook 'post-command-hook #'haki-meow-mode-line)
+     (add-hook 'post-command-hook #'haki-modal-mode-line)
 #+end_src
 
 * 🔗 Contributing
