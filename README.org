@@ -1,6 +1,14 @@
 #+title: Haki - A Pleasant, Modern Theme
 #+author: Dilip
 
+* Table of Palette :toc:
+- [[#-info][🔖 Info]]
+  - [[#-modes-supported][⚓ Modes Supported]]
+  - [[#gallery][Gallery]]
+- [[#-installation][🎨 Installation]]
+- [[#-tips][💲 Tips]]
+- [[#-contributing][🔗 Contributing]]
+- [[#️-inspiration][🎖️ Inspiration]]
 
 * 🔖 Info
 This is not any normal theme that looks "huh".
@@ -72,10 +80,10 @@ git clone https://github.com/idlip/haki ~/.config/emacs/var/themes/haki-theme
 #+end_src
 
 * 💲 Tips
-Since its new, there is not much, but I do have one surprise!
-Since regions cover everywhere, you can customize it to your preference.
+Since its new, there is not much, but I do have some surprise!
 
-  - Use ~M-x #'haki-change-region~ to choose and set a color for =haki-region=.
+  - Since regions cover everywhere, you can customize it to your preference.
+  Use ~M-x #'haki-change-region~ to choose and set a color for =haki-region=.
 
   To make it persist on sessions, you need to add ~(setq haki-region "#hexvalue")~
 
