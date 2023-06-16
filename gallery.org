@@ -1,6 +1,13 @@
 #+title: Haki: Gallery Show
 #+author: Dilip
 
+** Specs
+- Font: ComicCodeLigatures (paid font, I have patched manually as nerd font)
+- Emacs: 29 with Pure-Gtk
+- WM: Hyprland (wayland)
+- Emacs config: https://github.com/idlip/d-nix/blob/onepiece/d-emacs.org
+- OS: Nixos. I manage that too by literate org file. https://github.com/idlip/d-nix/blob/onepiece/d-setup.org
+
 ** Magit
 [[https://github.com/idlip/haki/assets/117019901/0f2a94bb-90dc-4a49-913d-a9872cee5214.png]]
 
@@ -8,6 +15,7 @@
 [[https://github.com/idlip/haki/assets/117019901/92708805-931f-4cd6-b047-47082bca3761.png]]
 
 ** Eww
++ For org like face (i mean that stars, code, code blocks), check: https://github.com/chenyanming/shrface
 [[https://github.com/idlip/haki/assets/117019901/7f9f37ed-76f1-40ce-ab36-433535c22d1d.png]]
 
 ** Elfeed
@@ -18,4 +26,9 @@
 [[https://github.com/idlip/haki/assets/117019901/15603ef9-389d-415b-80b6-061fc68cd3b3.png]]
 
 ** Ement
++ Looks are mostly rendered from ~shr~ and [[https://github.com/chenyanming/shrface][shrface-mode]]
 [[https://github.com/idlip/haki/assets/117019901/1716b480-c5df-48c9-8848-02f52b4b9033.png]]
+
+** Terminal
++ Shown using [[https://codeberg.org/dnkl/foot][foot]] terminal
+[[https://github.com/idlip/haki/assets/117019901/94b6e20b-fe9d-4d26-9ca7-85c5f9b6e1a7.png]]
