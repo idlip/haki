@@ -1,16 +1,20 @@
-#+title: Haki - A Pleasant, Modern Theme
+#+title: 🎇 Haki - A Pleasant, Modern Theme
 #+author: Dilip
 
-* Table of Palette :toc:
+* 🎨 Table of Palette :toc:
 - [[#-info][🔖 Info]]
   - [[#-modes-supported][⚓ Modes Supported]]
-  - [[#gallery][Gallery]]
-- [[#-installation][🎨 Installation]]
+  - [[#-gallery][🎪 Gallery]]
+- [[#-installation][✨ Installation]]
 - [[#-tips][💲 Tips]]
 - [[#-contributing][🔗 Contributing]]
 - [[#️-inspiration][🎖️ Inspiration]]
 
 * 🔖 Info
+
+#+html: <img src="https://github.com/idlip/haki/assets/117019901/8bc8ca2d-a324-45c2-8786-1534107f26db" align="right" width="45%">
+# #+html: <img src="https://github.com/idlip/haki/assets/117019901/eda43cc4-ce80-404b-9f0e-649b215a3fdf" align="right" width="30%">
+
 This is not any normal theme that looks "huh".
 
 This is tailored for emacs in modern sense, with each element to look distinguishable and go in sync.
@@ -44,11 +48,11 @@ You can open an issue for requesting a ~mode~ or ~package~. I will try to implem
 
 #+HTML: </details>
 
-** Gallery
+** 🎪 Gallery
 
 [[file:gallery.org][Eye candy Gallery]]
 
-* 🎨 Installation
+* ✨ Installation
 /By time I will make it available in Melpa/
 Until then please do clone and add it to your path.
 #+begin_src sh
