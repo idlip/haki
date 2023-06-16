@@ -12,8 +12,9 @@
 
 * 🔖 Info
 
+# haki
 #+html: <img src="https://github.com/idlip/haki/assets/117019901/8bc8ca2d-a324-45c2-8786-1534107f26db" align="right" width="45%">
-# #+html: <img src="https://github.com/idlip/haki/assets/117019901/eda43cc4-ce80-404b-9f0e-649b215a3fdf" align="right" width="30%">
+# fire #+html: <img src="https://github.com/idlip/haki/assets/117019901/eda43cc4-ce80-404b-9f0e-649b215a3fdf" align="right" width="30%">
 
 This is not any normal theme that looks "huh".
 
