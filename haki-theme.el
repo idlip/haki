@@ -203,10 +203,11 @@ Tip: Use 'VictorMono' or 'Maple Mono'.")
       (haki-title-font     haki-title-font)
       )
 
-;;; --- change mode-line border for meow states
-  (defun haki-meow-mode-line ()
-    "Changes mode-line border accordingly to meow/evil states"
-    (when (bound-and-true-p meow-mode)
+;;; --- change mode-line border for meow/evil states
+  (defun haki-modal-mode-line ()
+    "Changes mode-line border accordingly to meow/evil states
+Respected Only in GUI frame"
+    (when (require 'meow nil t)
       (cond
        ((meow-beacon-mode-p) (set-face-attribute 'mode-line nil :box heading-5))
        ((meow-insert-mode-p) (set-face-attribute 'mode-line nil :box heading-4))
