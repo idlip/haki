@@ -200,8 +200,7 @@ Tip: Use 'VictorMono' or 'Maple Mono'.")
       (haki-heading-font   haki-heading-font)
       (haki-code-font      haki-code-font)
       (haki-sans-font      haki-sans-font)
-      (haki-title-font     haki-title-font)
-      )
+      (haki-title-font     haki-title-font))
 
 ;;; --- change mode-line border for meow/evil states
   (defun haki-modal-mode-line ()
@@ -642,10 +641,6 @@ Respected Only in GUI frame"
    `(eglot-highlight-symbol-face 		((,class :inherit bold)))
    `(eglot-diagnostic-tag-deprecated-face 	((,class :strike-t<hrough t :inherit shadow)))
    `(eglot-diagnostic-tag-unnecessary-face 	((,class :inherit shadow)))
-
-;;; --- Eldoc
-   ;; NOTE: see https://github.com/purcell/package-lint/issues/187
-   `(eldoc-highlight-function-argument    ((,class :inherit bold :foreground ,heading-5)))
 
 ;;; --- Eldoc-box
    `(eldoc-box-body              ((,class :background ,bg-dim :foreground ,fg-main)))
