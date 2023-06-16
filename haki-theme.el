@@ -954,5 +954,5 @@ Respected Only in GUI frame"
   (add-to-list 'custom-theme-load-path
                (file-name-as-directory (file-name-directory load-file-name))))
 
-(provide-theme 'haki-theme)
+(provide-theme 'haki)
 ;;; haki-theme.el ends here
