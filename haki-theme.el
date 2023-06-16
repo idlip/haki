@@ -214,7 +214,7 @@ Respected Only in GUI frame"
        ((meow-normal-mode-p) (set-face-attribute 'mode-line nil :box cursor))
        ((meow-motion-mode-p) (set-face-attribute 'mode-line nil :box heading-2))
        ((meow-keypad-mode-p) (set-face-attribute 'mode-line nil :box heading-3))))
-    (when (bound-and-true-p evil-local-mode)
+    (when (require 'evil nil t)
       (cond
        ((evil-visual-state-p) (set-face-attribute 'mode-line nil :box heading-5))
        ((evil-insert-state-p) (set-face-attribute 'mode-line nil :box heading-4))
