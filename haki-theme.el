@@ -77,7 +77,7 @@ Copies chosen hex value `kill-ring.
 Default value is SeaGreen (#2e8b57)."
   (interactive
    (list
-    (if (package-installed-p 'consult)
+    (if (fboundp 'consult--read)
 	(consult--read (defined-colors)
                        :prompt "Choose Haki's Region: "
 		       :require-match t
