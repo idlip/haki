@@ -8,6 +8,12 @@
 - Emacs config: https://github.com/idlip/d-nix/blob/onepiece/d-emacs.org
 - OS: Nixos. I manage that too by literate org file. https://github.com/idlip/d-nix/blob/onepiece/d-setup.org
 
+** Haki region
+on the fly change of region color, applies for vertico, corfu, current line number..
+Using ~#'haki-change-region~.
+
+https://github.com/idlip/haki/assets/117019901/1caa2b23-bb54-4779-9412-df62f8073ae3.mp4
+
 ** Magit
 [[https://github.com/idlip/haki/assets/117019901/0f2a94bb-90dc-4a49-913d-a9872cee5214.png]]
 
