@@ -47,7 +47,7 @@
 (defgroup haki-theme ()
   "Haki theme options for User's preference.
 Make sure to reload the theme after setting the values!"
-:group 'faces)
+  :group 'faces)
 
 ;; I know docstring is more than 80 should I minimize it?
 (defvar haki-region "#2e8b6d"
@@ -96,23 +96,23 @@ Default value is SeaGreen (#2e8b57)."
 
 ;;; --- Variables to use different fonts
 (defvar haki-code-font `unspecified' ;; we can use it for both verbatim and code face
-"Font for inline code face.
+  "Font for inline code face.
 Useful in 'markdown-mode' and 'org-mode'.")
 
 (defvar haki-heading-font `unspecified'
-"Font for heading levels.
+  "Font for heading levels.
 Useful everywhere with headings.")
 
 (defvar haki-sans-font `unspecified'
-"Font to define a sans font.
+  "Font to define a sans font.
 Useful in context having person name (Author).")
 
 (defvar haki-title-font `unspecified'
-"Font for Titles.
+  "Font for Titles.
 Useful in everywhere with top title, Should be unique and outstanding.")
 
 (defvar haki-link-font `unspecified'
-"Font for links.
+  "Font for links.
 Italicize the link with pretty-design (cursive) font.
 Tip: Use 'VictorMono' or 'Maple Mono'.")
 
@@ -346,7 +346,7 @@ Respected Only in GUI frame"
    `(org-headline-done                       ((,class :foreground ,fg-dim)))
    `(org-latex-and-related                   ((,class :foreground ,blue-5)))
    `(org-link                                ((,class :inherit link)))
-   `(org-list-dt                             ((,class :foreground ,fg-main)))
+   `(org-list-dt                             ((,class :inherit bold)))
    `(org-macro                               ((,class :foreground ,fg-main)))
    `(org-meta-line                           ((,class :foreground ,fg-inactive)))
    `(org-mode-line-clock                     ((,class :foreground ,fg-dim)))
@@ -486,7 +486,7 @@ Respected Only in GUI frame"
    `(corfu-default                     ((,class :background ,bg-dim)))
    `(corfu-popupinfo                   ((,class :inherit corfu-default :extend t)))
    `(corfu-annotations                 ((,class :inherit completions-annotations)))
-                                       
+   
 ;;; --- Consult
    `(consult-async-split               ((,class :inherit error)))
    `(consult-file                      ((,class :inherit bold :foreground ,fg-comment)))
@@ -537,7 +537,7 @@ Respected Only in GUI frame"
    `(tempel-form 	               ((,class :inherit tempel-default :foreground ,clock :box ,clock)))
    `(tempel-field 	               ((,class :inherit tempel-default :foreground ,todo :box ,todo)))
    `(tempel-default 	               ((,class :inherit (bold italic) :foreground ,c-warning :box ,c-warning)))
-                                       
+   
 ;;; --- Jinx
    `(jinx-accept 	               ((,class :inherit font-lock-negation-char-face)))
    `(jinx-highlight 	               ((,class :background ,yellow-5 :foreground ,bg-inactive)))
@@ -550,7 +550,7 @@ Respected Only in GUI frame"
    `(dictionary-word-entry-face 	((,class :inherit font-lock-comment-face)))
 
 ;;; --- Shr
-   `(shr-abbreviation  		((,class :foreground ,c-regexc)))
+   `(shr-abbreviation  		((,class :inherit (org-list-dt org-verbatim))))
    `(shr-code          		((,class :inherit (org-block fixed-pitch))))
    `(shr-h1            		((,class :inherit message-header-subject)))
    `(shr-h2            		((,class :inherit org-level-1)))
