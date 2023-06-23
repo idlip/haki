@@ -29,6 +29,7 @@ There is not much science or principle here, /it's just a theme and its your eye
 - Treesit (tree-sitter)
 - Org-Modern
 - Elfeed
+- Flycheck & Flymake
 - Info-mode
 - Mingus
 - Which-key
