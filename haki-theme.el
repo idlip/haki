@@ -646,6 +646,41 @@ Respected Only in GUI frame"
    `(eldoc-box-body              ((,class :background ,bg-dim :foreground ,fg-main)))
    `(eldoc-box-border            ((,class :background ,cursor)))
 
+;;; --- flycheck
+    `(flycheck-error             ((,class :underline (:style wave :color ,error))))
+    `(flycheck-info              ((,class :underline (:style wave :color ,fg-region))))
+    `(flycheck-warning           ((,class :underline (:style wave :color ,yellow-5))))
+    `(flycheck-fringe-error      ((,class :inherit bold :background ,error :foreground ,bg-dim)))
+    `(flycheck-fringe-info       ((,class :inherit bold :background ,cursor :foreground ,bg-dim)))
+    `(flycheck-fringe-warning    ((,class :inherit bold :background ,yellow-5 :foreground ,bg-main)))
+
+;;; ---  flycheck-color-mode-line
+    `(flycheck-color-mode-line-error-face         ((,class :inherit flycheck-fringe-error)))
+    `(flycheck-color-mode-line-info-face          ((,class :inherit flycheck-fringe-info)))
+    `(flycheck-color-mode-line-running-face       ((,class :inherit italic)))
+    `(flycheck-color-mode-line-info-face          ((,class :inherit flycheck-fringe-warning)))
+
+;;; --- flycheck-indicator
+    `(flycheck-indicator-disabled         ((,class :inherit italic :foreground ,fg-dim)))
+    `(flycheck-indicator-error            ((,class :inherit error)))
+    `(flycheck-indicator-info             ((,class :inherit bold)))
+    `(flycheck-indicator-running          ((,class :inherit italic)))
+    `(flycheck-indicator-success          ((,class :inherit success)))
+    `(flycheck-indicator-warning          ((,class :inherit warning)))
+
+;;; --- flymake
+    `(flymake-error                                ((,class :inherit flycheck-error)))
+    `(flymake-error-echo                           ((,class :inherit error)))
+    `(flymake-note                                 ((,class :inherit flycheck-info)))
+    `(flymake-note-echo                            ((,class :inherit success)))
+    `(flymake-warning                              ((,class :inherit flycheck-warning)))
+    `(flymake-warning-echo                         ((,class :inherit warning)))
+    `(flymake-note-echo-at-eol                     ((,class :foreground ,fg-region)))
+
+;;; --- flyspell (better use jinx)
+    `(flyspell-duplicate         ((,class :inherit jinx-highlight)))
+    `(flyspell-incorrect         ((,class :inherit jinx-misspelled)))
+
 ;;; --- shell-script
    `(sh-heredoc 	  	((,class :inherit font-lock-string-face)))
    `(sh-quoted-exec 		((,class :inherit font-lock-builtin-face)))
