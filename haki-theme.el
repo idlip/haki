@@ -11,22 +11,23 @@
 ;; Package-Requires: ((emacs "27.1"))
 ;; Keywords: faces, theme, accessibility
 
-;; Haki theme is free package: you can redistribute it and/or modify
-;; it under the terms of the GNU General Public License as published by
-;; the Free Software Foundation, either version 3 of the License, or
-;; (at your option) any later version.
+;; This program is free software: you can redistribute it and/or
+;; modify it under the terms of the GNU General Public License as
+;; published by the Free Software Foundation, either version 3 of the
+;; License, or (at your option) any later version.
 ;;
-;; Haki theme is distributed in the hope that it will be useful,
-;; but WITHOUT ANY WARRANTY; without even the implied warranty of
-;; MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-;; GNU General Public License for more details.
+;; This program is distributed in the hope that it will be useful, but
+;; WITHOUT ANY WARRANTY; without even the implied warranty of
+;; MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
+;; General Public License for more details.
 ;;
 ;; You should have received a copy of the GNU General Public License
-;; along with GNU Emacs.  If not, see <https://www.gnu.org/licenses/>.
+;; along with this program. If not, see
+;; <https://www.gnu.org/licenses/>.
 
 ;;; Commentary:
 ;;
-;; Haki is a clean, pleasant looking dark theme in modern sense.
+;; Haki is a elegant, pleasant looking dark theme in modern sense.
 ;; Looks and distinguish-ability is maintained.
 ;; I hope you will love it ;)
 ;;
@@ -115,6 +116,21 @@ Useful in everywhere with top title, Should be unique and outstanding.")
   "Font for links.
 Italicize the link with pretty-design (cursive) font.
 Tip: Use 'VictorMono' or 'Maple Mono'.")
+
+;;; - declare optional function
+(declare-function meow-insert-mode-p "ext:meow")
+(declare-function meow-beacon-mode-p "ext:meow")
+(declare-function meow-normal-mode-p "ext:meow")
+(declare-function meow-motion-mode-p "ext:meow")
+(declare-function meow-keypad-mode-p "ext:meow")
+
+(declare-function evil-insert-state-p "ext:evil")
+(declare-function evil-normal-state-p "ext:evil")
+(declare-function evil-visual-state-p "ext:evil")
+(declare-function evil-motion-state-p "ext:evil")
+(declare-function evil-operator-state-p "ext:evil")
+(declare-function evil-emacs-state-p "ext:evil")
+(declare-function evil-replace-state-p "ext:evil")
 
 ;;; - Color Constants
 
