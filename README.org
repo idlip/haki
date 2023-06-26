@@ -55,12 +55,7 @@ You can open an issue for requesting a ~mode~ or ~package~. I will try to implem
 [[file:gallery.org][Eye candy Gallery]]
 
 * ✨ Installation
-/By time I will make it available in Melpa/
-Until then please do clone and add it to your path.
-#+begin_src sh
-git clone https://github.com/idlip/haki ~/.config/emacs/var/themes/haki-theme
-#+end_src
-
+Theme is available in MELPA.
 #+begin_src emacs-lisp
   ;; Option 1: Simply do (make sure it is in 'custom-theme-directory')
   (setq haki-region "#2e8b6d")
@@ -68,7 +63,6 @@ git clone https://github.com/idlip/haki ~/.config/emacs/var/themes/haki-theme
 
   ;; Option 2: with 'use-package'
   (use-package haki-theme
-    :load-path "~/.config/emacs/var/themes/haki-theme"
     :config
     (setq haki-region "#2e8b6d"
     ;; If you skip setting this, it will use 'default' font.
@@ -78,7 +72,7 @@ git clone https://github.com/idlip/haki ~/.config/emacs/var/themes/haki-theme
     haki-link-font "VictorMono Nerd Font" ;; or Maple Mono looks good
     haki-code-font "Maple Mono") ;; inline code/verbatim (org,markdown..)
 
-  ;; For meow/evil users (change border of mode-line according to meow states)
+  ;; For meow/evil users (change border of mode-line according to modal states)
     (add-hook 'post-command-hook #'haki-modal-mode-line)
 
     (load-theme 'haki t))
