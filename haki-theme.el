@@ -264,6 +264,7 @@ Respected Only in GUI frame"
    `(hl-line                   ((,class :extend t :background ,bg-dim)))
    `(link                      ((,class :font ,haki-link-font :slant italic :underline t :weight medium :foreground ,link :height 1.1)))
    `(button                    ((,class :inherit (bold link) :foreground ,c-operator)))
+   `(separator-line            ((,class :underline ,fg-comment :extend t)))
 
    ;; --- Minibuffer
    `(completions-annotations         ((,class :inherit italic :foreground ,blue-5)))
@@ -292,8 +293,8 @@ Respected Only in GUI frame"
    `(keycast-command            	((,class :inherit bold)))
    `(keycast-key                	((,class :foreground ,bg-main)))
 ;;; --- line numbers
-   `(line-number        	         ((,class :weight medium :foreground ,fg-inactive)))
-   `(line-number-current-line 	         ((,class :weight heavy :background ,fg-region :foreground ,fg-main :box ,haki-region)))
+   `(line-number        	         ((,class :inherit fixed-pitch :weight medium :foreground ,fg-inactive)))
+   `(line-number-current-line 	         ((,class :inherit fixed-pitch :weight heavy :background ,fg-region :foreground ,fg-main :box ,haki-region)))
    `(line-number-major-tick 	         ((,class :inherit line-number :foreground ,error)))
    `(line-number-minor-tick 	         ((,class :inherit line-number :foreground ,fg-inactive)))
 
@@ -727,7 +728,7 @@ Respected Only in GUI frame"
    `(message-header-xheader 	((,class :inherit message-header-other)))
    `(message-header-other 	((,class :font ,haki-sans-font :height 1.0 :foreground ,heading-7)))
    `(message-mml 	        ((,class )))
-   `(message-separator   	((,class :background ,bg-inactive)))
+   `(message-separator   	((,class :inherit separator-line)))
    `(header-line                ((,class :height 0.9)))
 
 ;;; --- Info
