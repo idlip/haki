@@ -749,7 +749,7 @@ Respected Only in GUI frame"
 ;;; --- helpful
    `(helpful-heading          ((,class :inherit org-level-1)))
    `(help-for-help-header     ((,class :inherit helpful-heading)))
-   `(help-key-binding         ((,class :inherit marginalia-key :background ,bg-inactive)))
+   `(help-key-binding         ((,class :inherit marginalia-key :background ,bg-dim)))
 
 ;;; --- customize
    `(custom-button       ((,class :inherit button)))
