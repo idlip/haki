@@ -1,4 +1,4 @@
-#+title: 🎇 Haki - A Pleasant, Modern Theme
+#+title: 🎇 Haki - An Elegant, High-contrast Dark Theme
 #+author: Dilip
 
 * 🎨 Table of Palette :toc:
@@ -18,9 +18,13 @@
 
 This is not any normal theme that looks "huh".
 
-This is tailored for emacs in modern sense, with each element to look distinguishable and go in sync.
+This is tailored for Emacs in modern sense, with each element to look distinguishable and go in sync.
 
 There is not much science or principle here, /it's just a theme and its your eyes, if they go in sync, whoami to stop?/
+
+As a new theme, I have two things in my mind:
++ If community or many users, like the theme, I might go tweaking and adding more goodies.
++ If there is not much appreciation, I might go on changing and improving some pastel colors.  
 
 ** ⚓ Modes Supported
 #+HTML: <details> <summary> Packages & Modes </summary>
@@ -110,8 +114,11 @@ Since its new, there is not much, but I do have some surprise!
      (add-hook 'post-command-hook #'haki-modal-mode-line)
 #+end_src
 
+ - Just like a theme, if you are looking to try new font. I can suggest you to check [[https://github.com/arrowtype/recursive][Recursive font]]
+   I use (fork) them patched with nerd icons in OnePiece style naming, check out [[https:github.com/idlip/code-d-font][Code D Font]]
+
 * 🔗 Contributing
-There's always the space for improvement.
+There's always a space for improvement.
  + If you want to open an *issue*, Please attach a pic of the issue state.
  + If you want to make a *PR*, Please attach pic of before and after effects.
 
