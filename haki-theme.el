@@ -1,4 +1,4 @@
-;;; haki-theme.el --- Elegant, dark theme  -*- lexical-binding:t -*-
+;;; haki-theme.el --- -*- lexical-binding:t -*-
 
 ;; Copyright (C) 2023 Dilip
 
@@ -27,7 +27,7 @@
 
 ;;; Commentary:
 ;;
-;; Haki is a elegant, pleasant looking dark theme in modern sense.
+;; Haki is an elegant, high-contrast dark-theme in modern sense.
 ;; Looks and distinguish-ability is maintained.
 ;; I hope you will love it ;)
 ;;
