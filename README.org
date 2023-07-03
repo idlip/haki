@@ -23,8 +23,8 @@ This is tailored for Emacs in modern sense, with each element to look distinguis
 There is not much science or principle here, /it's just a theme and its your eyes, if they go in sync, whoami to stop?/
 
 As a new theme, I have two things in my mind:
-+ If community or many users, like the theme, I might go tweaking and adding more goodies.
-+ If there is not much appreciation, I might go on changing and improving some pastel colors.  
++ If community or many users, like the theme, I might go tweak and add more goodies.
++ If there is not much appreciation, I might modify and improve some pastel colors.  
 
 ** ⚓ Modes Supported
 #+HTML: <details> <summary> Packages & Modes </summary>
@@ -110,6 +110,7 @@ Since its new, there is not much, but I do have some surprise!
 #+end_src
 
  - For meow/evil users, there is ~#'haki-modal-mode-line~ which can change the border (=:box=) of the mode-line according to the meow-states, with this hook:
+
    #+begin_src emacs-lisp
      (add-hook 'post-command-hook #'haki-modal-mode-line)
 #+end_src
