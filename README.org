@@ -1,4 +1,4 @@
-#+title: 🎇 Haki - An Elegant, High-contrast Dark Theme
+#+title: 🎇 Haki - An Elegant, High-contrast Dark Theme in Modern sense
 #+author: Dilip
 
 * 🎨 Table of Palette :toc:
