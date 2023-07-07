@@ -132,3 +132,10 @@ There's always a space for improvement.
 
     -----
 
+* 🎉 Shout Outs
+Thank you for the shout out and Appreciations!
+But note: I have just randomly chosen colors, it is not defined with any criteria.
+
++ https://irreal.org/blog/?p=11474
++ https://libreddit.kavin.rocks/r/emacs/comments/14qb3fj/haki_an_elegant_highcontrast_dark_theme_in_modern/  
+
