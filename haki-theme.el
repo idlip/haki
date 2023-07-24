@@ -993,6 +993,27 @@ Respected Only in GUI frame"
    `(woman-italic                        ((,class :inherit italic :foreground ,heading-3)))
    `(woman-unknown                       ((,class :foreground ,c-regexc)))
 
+;;; --- tab-bar
+   `(tab-bar                             ((,class :background ,bg-main)))
+   `(tab-bar-tab-group-current           ((,class :box (:line-width (2 . -2) :color "gray50"))))
+   `(tab-bar-tab-group-inactive          ((,class :box (:line-width (2 . -2) :color "gray50"))))
+   `(tab-bar-tab                         ((,class :inherit region)))
+   `(tab-bar-tab-inactive                ((,class :inherit mode-line-inactive)))
+   `(tab-line                            ((,class :background ,bg-main)))
+
+;;; --- centaur-tabs
+   `(centaur-tabs-active-bar-face               ((,class :background ,bg-inactive)))
+   `(centaur-tabs-close-mouse-face              ((,class :inherit bold :background ,error :box (:color ,cursor :line-width (1 . -3)))))
+   `(centaur-tabs-close-selected                ((,class :inherit centaur-tabs-selected)))
+   `(centaur-tabs-close-unselected              ((,class :inherit centaur-tabs-unselected)))
+   `(centaur-tabs-modified-marker-selected      ((,class :inherit centaur-tabs-selected)))
+   `(centaur-tabs-modified-marker-unselected    ((,class :inherit centaur-tabs-unselected)))
+   `(centaur-tabs-default                       ((,class :background ,bg-main)))
+   `(centaur-tabs-selected                      ((,class :inherit region)))
+   `(centaur-tabs-selected-modified             ((,class :inherit (italic centaur-tabs-selected))))
+   `(centaur-tabs-unselected                    ((,class :background ,bg-dim :foreground ,fg-comment)))
+   `(centaur-tabs-unselected-modified           ((,class :inherit (italic centaur-tabs-unselected))))
+
 ;;; --- vundo
    `(vundo-highlight                     ((,class :inherit (bold vundo-nodeatom) :foreground ,link)))))
 
