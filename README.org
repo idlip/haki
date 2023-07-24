@@ -46,6 +46,7 @@ As a new theme, I have two things in my mind:
 - Meow
 - Avy, sdcv
 - Vterm
+- Tabs, Centaur-Tabs
 
 #+begin_center
 /I dont use other packages, PR is well appreciated for other modes./
