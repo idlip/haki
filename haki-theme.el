@@ -610,17 +610,18 @@ Respected Only in GUI frame"
    `(eww-form-submit              ((,class :background ,bg-inactive :box t :foreground ,blue-5)))
    `(eww-form-text                ((,class :background ,bg-inactive :foreground ,fg-main :extend nil)))
    `(eww-form-textarea            ((,class :inherit eww-form-text :foreground ,fg-dim)))
+
 ;;; --- Mingus
-   ;; `(mingus-mark-face    ((,class :inherit bold :foregroud ,yellow-4)))
-   ;; `(mingus-artist-face  ((,class :foreground ,cyan-3)))
-   ;; `(mingus-album-face   ((,class :underline t :foreground ,red-1)))
-   ;; `(mingus-playlist-face  ((,class :foreground ,red-1)))
-   ;; `(mingus-directory-face   ((,class :foreground ,red-2)))
-   ;; `(mingus-playing-face   ((,class :foreground ,red-1)))
-   ;; `(mingus-pausing-face   ((,class :foreground ,yellow-2)))
-   ;; `(mingus-stopped-face   ((,class :foreground ,blue-1)))
-   ;; `(mingus-song-file-face   ((,class :foreground ,blue-2)))
-   ;; `(mingus-album-stale-face   ((,class :foreground ,magenta-3)))
+   `(mingus-mark-face             ((,class :inherit dired-mark)))
+   `(mingus-artist-face           ((,class :foreground ,heading-1)))
+   `(mingus-album-face            ((,class :underline t :foreground ,title)))
+   `(mingus-playlist-face         ((,class :foreground ,c-operator)))
+   `(mingus-directory-face        ((,class :inherit dired-directory)))
+   `(mingus-playing-face          ((,class :foreground ,heading-5)))
+   `(mingus-pausing-face          ((,class :foreground ,yellow-5)))
+   `(mingus-stopped-face          ((,class :foreground ,error)))
+   `(mingus-song-file-face        ((,class :foreground ,c-string)))
+   `(mingus-album-stale-face      ((,class :foreground ,c-regexb)))
 
 ;;; --- WhichKey
    `(which-func                                 ((,class :inherit bold :foreground ,blue-5)))
