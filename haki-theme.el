@@ -252,6 +252,7 @@ Respected Only in GUI frame"
 
 ;;; -- Base
    `(mode-line               ((,class :background ,bg-dim :box (:line-width (2 . 1) :color ,cursor) :weight medium :height 0.9)))
+   `(header-line             ((,class :inherit mode-line :foreground ,title)))
 
    ;; Structural
    `(bold                      ((,class :weight bold)))
