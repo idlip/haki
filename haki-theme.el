@@ -395,7 +395,7 @@ Respected Only in GUI frame"
    `(org-agenda-column-dateline              ((,class :background ,bg-dim)))
    `(org-agenda-current-time                 ((,class :foreground ,blue-5)))
    `(org-agenda-date                         ((,class :inherit bold :foreground ,clock)))
-   `(org-agenda-date-today                   ((,class )))
+   `(org-agenda-date-today                   ((,class :inherit doom-modeline-time)))
    `(org-agenda-date-weekend                 ((,class )))
    `(org-agenda-date-weekend-today           ((,class )))
    `(org-agenda-diary                        ((,class :inherit org-agenda-calendar-sexp)))
@@ -729,6 +729,7 @@ Respected Only in GUI frame"
    `(shortdoc-section     ((,class :inherit info-menu-header)))
 
 ;;; --- doc-view
+   ;; TODO: might be in emacs30
    ;; `(doc-view-svg-background    ((,class :color ,bg-main)))
    ;; `(doc-view-svg-foreground    ((,class :color ,fg-main)))
 
