@@ -806,6 +806,24 @@ Respected Only in GUI frame"
    `(vterm-color-white            ((,class :background ,fg-dim :foreground ,fg-main)))
    `(vterm-color-yellow           ((,class :background ,heading-2 :foreground ,heading-2)))
 
+;;; --- eat
+   `(eat-term-color-0             ((,class :inherit vterm-color-black )))
+   `(eat-term-color-1             ((,class :inherit vterm-color-red )))
+   `(eat-term-color-2             ((,class :inherit vterm-color-green )))
+   `(eat-term-color-3             ((,class :inherit vterm-color-yellow )))
+   `(eat-term-color-4             ((,class :inherit vterm-color-blue )))
+   `(eat-term-color-5             ((,class :inherit vterm-color-magenta )))
+   `(eat-term-color-6             ((,class :inherit vterm-color-cyan )))
+   `(eat-term-color-7             ((,class :inherit vterm-color-white )))
+   `(eat-term-color-8             ((,class :inherit vterm-color-black )))
+   `(eat-term-color-9             ((,class :inherit vterm-color-red )))
+   `(eat-term-color-10            ((,class :inherit vterm-color-green )))
+   `(eat-term-color-11            ((,class :inherit vterm-color-yellow )))
+   `(eat-term-color-12            ((,class :inherit vterm-color-blue )))
+   `(eat-term-color-13            ((,class :inherit vterm-color-magenta )))
+   `(eat-term-color-14            ((,class :inherit vterm-color-cyan )))
+   `(eat-term-color-15            ((,class :inherit vterm-color-white )))
+
 ;;; --- eshell
    `(eshell-ls-archive            ((,class :foreground ,c-const)))
    `(eshell-ls-backup             ((,class :inherit shadow)))
