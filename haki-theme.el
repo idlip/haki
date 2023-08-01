@@ -1039,6 +1039,16 @@ Respected Only in GUI frame"
    `(centaur-tabs-unselected                    ((,class :background ,bg-dim :foreground ,fg-comment)))
    `(centaur-tabs-unselected-modified           ((,class :inherit (italic centaur-tabs-unselected))))
 
+;;; --- solaire-mode
+   `(solaire-default-face                       ((,class :inherit default :background ,bg-inactive)))
+   `(solaire-hl-line-face                       ((,class :inherit hl-line :background ,bg-main :extend t)))
+   `(solaire-org-hide-face                      ((,class :inherit org-hide :foreground ,bg-main)))
+   `(solaire-fringe-face                        ((,class :inherit fringe)))
+   `(solaire-region-face                        ((,class :inherit region :foreground ,fg-inactive)))
+   `(solaire-mode-line-face                     ((,class :inherit mode-line :foreground ,fg-dim)))
+   `(solaire-header-line-face                   ((,class nil)))
+   `(solaire-line-number-face                   ((,class :inherit line-number :foreground ,fg-comment)))
+
 ;;; --- vundo
    `(vundo-highlight                            ((,class :inherit (bold vundo-nodeatom) :foreground ,link)))))
 
