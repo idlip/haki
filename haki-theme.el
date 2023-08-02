@@ -252,6 +252,7 @@ Respected Only in GUI frame"
 
 ;;; -- Base
    `(mode-line               ((,class :background ,bg-dim :box (:line-width (2 . 1) :color ,cursor) :weight medium :height 0.9)))
+   `(mode-line-inactive      ((,class :inherit mode-line :foreground ,fg-dim :background ,bg-inactive)))
    `(header-line             ((,class :inherit mode-line :foreground ,title)))
 
    ;; Structural
@@ -275,7 +276,6 @@ Respected Only in GUI frame"
    `(completions-first-difference    ((,class )))
 
    ;; Modeline
-   `(mode-line-inactive                 ((,class :inherit mode-line :foreground ,fg-dim :background ,bg-inactive)))
    `(doom-modeline-bar                  ((,class :background ,haki-region)))
    `(doom-modeline-buffer-file          ((,class :inherit  (doom-modeline bold) :foreground ,heading-1)))
    `(doom-modeline-buffer-major-mode    ((,class :inherit  (doom-modeline-emphasis bold) :foreground ,heading-2)))
@@ -1058,14 +1058,14 @@ Respected Only in GUI frame"
    `(centaur-tabs-unselected-modified           ((,class :inherit (italic centaur-tabs-unselected))))
 
 ;;; --- solaire-mode
-   `(solaire-default-face                       ((,class :inherit default :background ,bg-inactive)))
-   `(solaire-hl-line-face                       ((,class :inherit hl-line :background ,bg-main :extend t)))
+   `(solaire-default-face                       ((,class :inherit default :background ,bg-dim)))
+   `(solaire-hl-line-face                       ((,class :inherit hl-line :background ,bg-inactive :extend t)))
    `(solaire-org-hide-face                      ((,class :inherit org-hide :foreground ,bg-main)))
-   `(solaire-fringe-face                        ((,class :inherit fringe)))
-   `(solaire-region-face                        ((,class :inherit region :foreground ,fg-inactive)))
-   `(solaire-mode-line-face                     ((,class :inherit mode-line :foreground ,fg-dim)))
-   `(solaire-header-line-face                   ((,class nil)))
-   `(solaire-line-number-face                   ((,class :inherit line-number :foreground ,fg-comment)))
+   `(solaire-fringe-face                        ((,class :inherit fringe :background ,bg-dim)))
+   `(solaire-region-face                        ((,class :inherit region)))
+   `(solaire-mode-line-face                     ((,class :foreground ,fg-dim)))
+   `(solaire-header-line-face                   ((,class )))
+   `(solaire-line-number-face                   ((,class :inherit line-number :background ,bg-dim :foreground ,fg-inactive)))
 
 ;;; --- vundo
    `(vundo-highlight                            ((,class :inherit (bold vundo-nodeatom) :foreground ,link)))))
