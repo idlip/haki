@@ -1,5 +1,13 @@
 #+title: 🎇 Haki - An Elegant, High-contrast Dark Theme in Modern sense
 #+author: Dilip
+#+language: en
+#+export_file_name: haki.texi
+#+texinfo_dir_category: Emacs misc features
+#+texinfo_dir_title: Haki-Theme: (haki).
+#+texinfo_dir_desc: An High-contrast Dark Theme
+
+#+html: <a href="https://www.gnu.org/software/emacs/"><img alt="GNU Emacs" src="https://github.com/minad/corfu/blob/screenshots/emacs.svg?raw=true"/></a>
+#+html: <a href="https://melpa.org/#/haki-theme"><img alt="MELPA" src="https://melpa.org/packages/haki-theme-badge.svg"/></a>
 
 * 🎨 Table of Palette :toc:
 - [[#-info][🔖 Info]]
@@ -89,7 +97,7 @@ Theme is available in MELPA.
 Since its new, there is not much, but I do have some surprise!
 
   - Since regions cover everywhere, you can customize it to your preference.
-  Use ~M-x #'haki-change-region~ to choose and set a color for =haki-region=.
+  Use ~M-x haki-change-region~ to choose and set a color for =haki-region=.
 
   To make it persist on sessions, you need to add ~(setq haki-region "#hexvalue")~
 
