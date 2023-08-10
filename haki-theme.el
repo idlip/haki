@@ -51,7 +51,7 @@ Make sure to reload the theme after setting the values!"
   :group 'faces)
 
 ;; I know docstring is more than 80 should I minimize it?
-(defvar haki-region "#2e8b6d"
+(defcustom haki-region "#2e8b6d"
   "Your color choice for haki theme region background.
 Usually dark variant of any color is *recommended*,
 as it syncs with orderless matching and text visibility.
@@ -68,7 +68,9 @@ If you dont like coloured one, some better choices are :
 
 Usage : (setq haki-region <#hex-value>)
 
--- Requires reloading the theme to display changes --")
+-- Requires reloading the theme to display changes --"
+  :group 'haki-theme
+  :type 'string)
 
 ;; I know docstring is more than 80 should I minimize it?
 (defun haki-change-region (color)
@@ -96,26 +98,36 @@ Default value is SeaGreen (#2e8b57)."
     (kill-new region-choice)))
 
 ;;; --- Variables to use different fonts
-(defvar haki-code-font `unspecified' ;; we can use it for both verbatim and code face
+(defcustom haki-code-font `unspecified' ;; we can use it for both verbatim and code face
   "Font for inline code face.
-Useful in 'markdown-mode' and 'org-mode'.")
+Useful in 'markdown-mode' and 'org-mode'."
+  :group 'haki-theme
+  :type 'string)
 
-(defvar haki-heading-font `unspecified'
+(defcustom haki-heading-font `unspecified'
   "Font for heading levels.
-Useful everywhere with headings.")
+Useful everywhere with headings."
+  :group 'haki-theme
+  :type 'string)
 
-(defvar haki-sans-font `unspecified'
+(defcustom haki-sans-font `unspecified'
   "Font to define a sans font.
-Useful in context having person name (Author).")
+Useful in context having person name (Author)."
+  :group 'haki-theme
+  :type 'string)
 
-(defvar haki-title-font `unspecified'
+(defcustom haki-title-font `unspecified'
   "Font for Titles.
-Useful in everywhere with top title, Should be unique and outstanding.")
+Useful in everywhere with top title, Should be unique and outstanding."
+  :group 'haki-theme
+  :type 'string)
 
-(defvar haki-link-font `unspecified'
+(defcustom haki-link-font `unspecified'
   "Font for links.
 Italicize the link with pretty-design (cursive) font.
-Tip: Use 'VictorMono' or 'Maple Mono'.")
+Tip: Use 'VictorMono' or 'Maple Mono'."
+  :group 'haki-theme
+  :type 'string)
 
 ;;; - declare optional function
 (declare-function meow-insert-mode-p "ext:meow")
@@ -950,7 +962,7 @@ Respected Only in GUI frame"
 ;;; --- Markdown
    `(markdown-blockquote-face              ((,class :inherit org-verbatim :weight medium)))
    `(markdown-bold-face                    ((,class :inherit bold)))
-   `(markdown-code-face                    ((,class :inherit org-block)))
+   `(markdown-code-face                    ((,class :inherit org-code)))
    `(markdown-comment-face                 ((,class :inherit font-lock-comment-face)))
    `(markdown-footnote-marker-face         ((,class :inherit org-meta-line)))
    `(markdown-footnote-text-face           ((,class :inherit org-meta-line)))
@@ -976,8 +988,8 @@ Respected Only in GUI frame"
    `(markdown-language-info-face           ((,class :foreground ,c-string)))
    `(markdown-language-keyword-face        ((,class :foreground ,cursor)))
    `(markdown-line-break-face              ((,class :foreground ,fg-inactive)))
-   `(markdown-link-face                    ((,class :foreground ,fg-inactive)))
-   `(markdown-link-title-face              ((,class :foreground ,c-warning)))
+   `(markdown-link-face                    ((,class :inherit org-link)))
+   `(markdown-link-title-face              ((,class :inherit markdown-link-face :foreground ,c-warning)))
    `(markdown-list-face                    ((,class :inherit shadow)))
    `(markdown-markup-face                  ((,class :inherit org-meta-line)))
    `(markdown-math-face                    ((,class :foreground ,fg-main)))
