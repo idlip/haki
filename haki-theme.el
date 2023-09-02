@@ -413,7 +413,7 @@ Respected Only in GUI frame"
    `(org-agenda-date-weekend-today           ((,class )))
    `(org-agenda-diary                        ((,class :inherit org-agenda-calendar-sexp)))
    `(org-agenda-dimmed-todo-face             ((,class :inherit shadow)))
-   `(org-agenda-done                         ((,class :inherit org-done :background nil)))
+   `(org-agenda-done                         ((,class :inherit org-done)))
    `(org-agenda-filter-category              ((,class :inherit bold :foreground ,c-keyword)))
    `(org-agenda-filter-effort                ((,class :inherit bold :foreground ,c-keyword)))
    `(org-agenda-filter-regexp                ((,class :inherit bold :foreground ,c-keyword)))
