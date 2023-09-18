@@ -5,8 +5,8 @@
 - Font: [[https://github.com/arrowtype/recursive][Recursive Font]], Formerly was using Comic Code
 - Emacs: 29 with Pure-Gtk
 - WM: Hyprland (wayland)
-- Emacs org config: https://github.com/idlip/d-nix/blob/onepiece/d-emacs.org
-- OS: Nixos. I manage that too by literate org file. https://github.com/idlip/d-nix/blob/onepiece/d-setup.org
+- Emacs org config: [[https://github.com/idlip/d-nix/tree/onepiece/home/programs/d-emacs][modular-config]]
+- OS: Nixos. [[https://github.com/idlip/d-nix][dotfiles]]
 
 ** Haki region
 on the fly change of region color, applies for vertico, corfu, current line number..
