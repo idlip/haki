@@ -161,7 +161,7 @@ Tip: Use 'VictorMono' or 'Maple Mono'."
 
       ;; --- Common logics
       (error      "#ee6363")
-      (link       "#fcde69")
+      (link       "#6495ed")
       (todo       "#54ff9f")
       (done       "#b4dddd")
       (code       "#77ee77")
@@ -183,7 +183,7 @@ Tip: Use 'VictorMono' or 'Maple Mono'."
       (c-builtin     "#ee88ee")
       (c-const       "#ff6a6a")
       (c-var         "#ffb5c5")
-      (c-string      "#ffec8b")
+      (c-string      "#7ffbe4")
       (c-operator    "#ee9572")
       (c-regexc      "#9bcd9b")
       (c-regexb      "#a2cd5a")
@@ -275,7 +275,7 @@ Respected Only in GUI frame"
    `(region                    ((,class :background ,fg-region :weight semi-bold)))
    `(highlight                 ((,class :background ,bg-dim :foreground ,fg-dim)))
    `(fixed-pitch-serif         ((,class :inherit default)))
-   `(variable-pitch            ((,class :inherit default)))
+   `(variable-pitch            ((,class )))
    `(cursor                    ((,class :background ,cursor)))
    `(hl-line                   ((,class :extend t :background ,bg-dim)))
    `(link                      ((,class :font ,haki-link-font :slant italic :underline t :weight medium :foreground ,link :height 1.1)))
@@ -385,7 +385,7 @@ Respected Only in GUI frame"
    `(org-mode-line-clock-overrun             ((,class :foreground ,error)))
    `(org-priority                            ((,class :foreground ,bg-main)))
    `(org-property-value                      ((,class :foreground ,c-var)))
-   `(org-quote                               ((,class )))
+   `(org-quote                               ((,class :inherit bold :foreground ,fg-main)))
    `(org-scheduled                           ((,class :foreground ,fg-main)))
    `(org-scheduled-previously                ((,class :foreground ,fg-dim)))
    `(org-scheduled-today                     ((,class :foreground ,fg-main)))
@@ -590,6 +590,11 @@ Respected Only in GUI frame"
    `(tempel-field                      ((,class :inherit tempel-default :foreground ,todo :box ,todo)))
    `(tempel-default                    ((,class :inherit (bold italic) :foreground ,c-warning :box ,c-warning)))
 
+;;; --- embark
+   `(embark-keybinding                 ((,class :inherit marginalia-key)))
+   `(embark-target                     ((,class :inherit (org-target highlight))))
+
+
 ;;; --- Jinx
    `(jinx-accept                       ((,class :inherit font-lock-negation-char-face)))
    `(jinx-highlight                    ((,class :background ,yellow-5 :foreground ,bg-inactive)))
@@ -612,7 +617,7 @@ Respected Only in GUI frame"
    `(shr-h6               ((,class :inherit org-level-6)))
    `(shr-selected-link    ((,class :inherit link :box t)))
    `(shr-link             ((,class :inherit link :foreground ,link)))
-   `(shr-text             ((,class )))
+   `(shr-text             ((,class :inherit variable-pitch-text)))
 
 ;;; --- eww
    `(eww-invalid-certificate      ((,class :foreground ,error)))
@@ -692,7 +697,7 @@ Respected Only in GUI frame"
    `(eglot-inlay-hint-face                   ((,class :height 0.8 :inherit shadow :foreground ,fg-dim)))
    `(eglot-parameter-hint-face               ((,class :inherit eglot-inlay-hint-face)))
    `(eglot-highlight-symbol-face             ((,class :inherit bold)))
-   `(eglot-diagnostic-tag-deprecated-face    ((,class :strike-t<hrough t :inherit shadow)))
+   `(eglot-diagnostic-tag-deprecated-face    ((,class :strike-through t :inherit shadow)))
    `(eglot-diagnostic-tag-unnecessary-face   ((,class :inherit shadow)))
 
 ;;; --- Eldoc-box
