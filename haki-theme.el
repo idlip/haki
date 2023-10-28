@@ -216,7 +216,7 @@ Tip: Use 'VictorMono' or 'Maple Mono'."
       ;; --- For headings
       (title        "#6ae4b9")
       (heading-1    "#ab82ff")
-      (heading-2    "#ffec8b")
+      (heading-2    "#fab387")
       (heading-3    "#3cb6df")
       (heading-4    "#9aff9a")
       (heading-5    "#97ffff")
@@ -598,7 +598,7 @@ Respected Only in GUI frame"
 ;;; --- Jinx
    `(jinx-accept                       ((,class :inherit font-lock-negation-char-face)))
    `(jinx-highlight                    ((,class :background ,yellow-5 :foreground ,bg-inactive)))
-   `(jinx-misspelled                   ((,class :underline ,link)))
+   `(jinx-misspelled                   ((,class :underline ,yellow-5)))
 
 ;;; --- Dictionary (better use sdcv)
    `(dictionary-button-face            ((,class :inherit bold)))
