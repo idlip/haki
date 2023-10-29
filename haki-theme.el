@@ -161,7 +161,7 @@ Tip: Use 'VictorMono' or 'Maple Mono'."
 
       ;; --- Common logics
       (error      "#ee6363")
-      (link       "#6495ed")
+      (link       "#b4befe")
       (todo       "#54ff9f")
       (done       "#b4dddd")
       (code       "#77ee77")
@@ -1083,6 +1083,11 @@ Respected Only in GUI frame"
    `(solaire-mode-line-face                     ((,class :foreground ,fg-dim)))
    `(solaire-header-line-face                   ((,class )))
    `(solaire-line-number-face                   ((,class :inherit line-number :background ,bg-dim :foreground ,fg-inactive)))
+
+;;; --- dashboard
+   `(dashboard-heading                          ((,class :font ,haki-heading-font :weight bold :foreground ,heading-1)))
+   `(dashboard-banner-logo-title-face           ((,class :inherit dashboard-heading :foreground ,title)))
+   `(dashboard-items-face                       ((,class )))
 
 ;;; --- vundo
    `(vundo-highlight                            ((,class :inherit (bold vundo-nodeatom) :foreground ,link)))))
