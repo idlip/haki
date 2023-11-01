@@ -391,7 +391,7 @@ Respected Only in GUI frame"
    `(org-scheduled-today                     ((,class :foreground ,fg-main)))
    `(org-sexp-date                           ((,class :foreground ,bg-main)))
    `(org-special-keyword                     ((,class :foreground ,fg-inactive)))
-   `(org-table                               ((,class :foreground ,c-warning)))
+   `(org-table                               ((,class :inherit fixed-pitch :foreground ,c-warning)))
    `(org-table-header                        ((,class :foreground ,title :inherit (bold org-table))))
    `(org-tag                                 ((,class :width condensed :height 0.9 :weight regular :underline nil :box (:color ,cursor :line-width (1 . -3)) :background ,bg-tag :foreground ,bg-dim)))
    `(org-tag-group                           ((,class )))
