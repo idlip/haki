@@ -727,13 +727,12 @@ Respected Only in GUI frame"
    `(flycheck-indicator-warning          ((,class :inherit warning)))
 
 ;;; --- flymake
-   `(flymake-error                                ((,class :inherit flycheck-error)))
-   `(flymake-error-echo                           ((,class :inherit error)))
-   `(flymake-note                                 ((,class :inherit flycheck-info)))
-   `(flymake-note-echo                            ((,class :inherit success)))
-   `(flymake-warning                              ((,class :inherit flycheck-warning)))
-   `(flymake-warning-echo                         ((,class :inherit warning)))
-   `(flymake-note-echo-at-eol                     ((,class :foreground ,fg-region)))
+   `(flymake-error              ((,class :underline (:style wave :color ,error))))
+   `(flymake-note               ((,class :underline (:style wave :color ,fg-region))))
+   `(flymake-warning            ((,class :underline (:style wave :color ,yellow-5))))
+   `(flymake-error-echo         ((,class :inherit bold :background ,error :foreground ,bg-dim)))
+   `(flymake-note-echo          ((,class :inherit bold :background ,cursor :foreground ,bg-dim)))
+   `(flymake-warning-echo       ((,class :inherit bold :background ,yellow-5 :foreground ,bg-main)))
 
 ;;; --- flyspell (better use jinx)
    `(flyspell-duplicate         ((,class :inherit jinx-highlight)))
