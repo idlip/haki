@@ -178,16 +178,17 @@ Tip: Use 'VictorMono' or 'Maple Mono'."
       (yellow-5 "#eee685")
 
       ;; -- For Code
-      (c-keyword     "#00cdcd")
+      (c-keyword     "#22fefe")
       (c-func        "#54ff9f")
       (c-builtin     "#ee88ee")
       (c-const       "#ff6a6a")
       (c-var         "#ffb5c5")
-      (c-string      "#7ffbe4")
+      (c-string      "#89b4fa")
+      (c-type        "#11bfa0")
       (c-operator    "#ee9572")
       (c-regexc      "#9bcd9b")
       (c-regexb      "#a2cd5a")
-      (c-warning     "#97ffff")
+      (c-warning     "#daa520")
       (c-property    "#EE7286")
 
       ;; --- For diffs
@@ -327,7 +328,7 @@ Respected Only in GUI frame"
    `(font-lock-regexp-grouping-backslash       ((,class :inherit bold :foreground ,c-regexb)))
    `(font-lock-regexp-grouping-construct       ((,class :inherit bold :foreground ,c-regexc)))
    `(font-lock-string-face                     ((,class :foreground ,c-string :slant italic)))
-   `(font-lock-type-face                       ((,class :inherit bold :foreground ,c-string)))
+   `(font-lock-type-face                       ((,class :inherit bold :foreground ,c-type)))
    `(font-lock-variable-name-face              ((,class :foreground ,c-var)))
    `(font-lock-warning-face                    ((,class :inherit bold :foreground ,c-warning)))
    `(font-lock-punctuation-face                ((,class :inherit (italic) :foreground ,bracket)))
