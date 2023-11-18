@@ -55,16 +55,10 @@ Make sure to reload the theme after setting the values!"
   "Your color choice for haki theme region background.
 Usually dark variant of any color is *recommended*,
 as it syncs with orderless matching and text visibility.
-It will be used in region selection, vertico-current and corfu-current too.
+It will be used in `region' selection,
+`vertico-current' and `corfu-current' too.
 
-==> Tip : You can use `haki-change-region' function.
-
-Default value is SeaGreen (#2e8b57)
-
-If you dont like coloured one, some better choices are :
-#2b2b2b  ==> Darker
-#6c7b8b  ==> Greyish
-#5f9ea0  ==> Cadet Blue
+Tip : You can use `haki-change-region' function.
 
 Usage : (setq haki-region <#hex-value>)
 
@@ -72,30 +66,14 @@ Usage : (setq haki-region <#hex-value>)
   :group 'haki-theme
   :type 'string)
 
-;; I know docstring is more than 80 should I minimize it?
-(defun haki-change-region (color)
-  "Lists COLOR to choose and set as #`haki-region.
-Copies chosen hex value `kill-ring.
-
-Default value is SeaGreen (#2e8b57)."
-  (interactive
-   (list
-    (if (fboundp 'consult--read)
-        (consult--read (defined-colors)
-                       :prompt "Choose Haki's Region: "
-                       :require-match t
-                       :category 'color)
-      (completing-read "Choose Haki's Region: " (defined-colors) nil t ))))
-  (let (( region-choice
-          (when-let* ((rgb (color-name-to-rgb color))
-                      ;; Sets 2 digits per component.
-                      (hex (apply #'color-rgb-to-hex (append rgb '(2)))))
-            hex)))
-    (setq haki-region region-choice)
+(defun haki-change-region ()
+  "Interactively choose a COLOR to set it as `haki-region'."
+  (interactive)
+  (let ((choice (string-trim
+                 (call-interactively #'read-color))))
+    (setopt haki-region choice)
     (load-theme 'haki t)
-    (message (concat "Add this line to init.el to persist on sessions. Hex value is in your kill-ring too.
-(setq haki-region " region-choice")  ;; value in double quotes"))
-    (kill-new region-choice)))
+    (kill-new choice)))
 
 ;;; --- Variables to use different fonts
 (defcustom haki-code-font `unspecified' ;; we can use it for both verbatim and code face
