@@ -52,15 +52,13 @@ Make sure to reload the theme after setting the values!"
 
 ;; I know docstring is more than 80 should I minimize it?
 (defcustom haki-region "#2e8b6d"
-  "Your color choice for haki theme region background.
-Usually dark variant of any color is *recommended*,
-as it syncs with orderless matching and text visibility.
-It will be used in `region' selection,
-`vertico-current' and `corfu-current' too.
+  "Color choice for haki theme region background.
+Usually dark or medium variant is *recommended* for text visibility.
+It will be used in `region' selection.
 
-Tip : You can use `haki-change-region' function.
+Value can be hex value or color name as string.
 
-Usage : (setq haki-region <#hex-value>)
+`haki-change-region' funtion gives interactive choice.
 
 -- Requires reloading the theme to display changes --"
   :group 'haki-theme
