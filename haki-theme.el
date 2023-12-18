@@ -250,7 +250,7 @@ Respected Only in GUI frame"
    `(bold-italic               ((,class :slant italic :weight bold)))
    `(underline                 ((,class :underline t)))
    `(region                    ((,class :background ,fg-region :weight semi-bold)))
-   `(highlight                 ((,class :background ,bg-dim :foreground ,fg-dim)))
+   `(highlight                 ((,class :inherit bold :background ,yellow-5 :foreground ,bg-inactive)))
    `(fixed-pitch-serif         ((,class :inherit default)))
    `(variable-pitch            ((,class )))
    `(cursor                    ((,class :background ,cursor)))
@@ -279,8 +279,8 @@ Respected Only in GUI frame"
    `(isearch-group-1                    ((,class :foreground ,c-regexc)))
    `(isearch-group-2                    ((,class :foreground ,c-regexb)))
    `(lazy-highlight                     ((,class :inherit highlight)))
-   `(match                              ((,class :inherit consult-preview-match)))
-   `(query-replace                      ((,class :inherit consult-preview-match)))
+   `(match                              ((,class :background ,error :foreground ,bg-inactive)))
+   `(query-replace                      ((,class :inherit match)))
 ;;; --- keycast
    `(keycast-command                    ((,class :inherit bold)))
    `(keycast-key                        ((,class :foreground ,bg-main)))
@@ -354,7 +354,7 @@ Respected Only in GUI frame"
    `(org-formula                             ((,class :foreground ,fg-main)))
    `(org-headline-done                       ((,class :foreground ,fg-dim)))
    `(org-latex-and-related                   ((,class :foreground ,blue-5)))
-   `(org-link                                ((,class :inherit link)))
+   `(org-link                                ((,class :inherit (link))))
    `(org-list-dt                             ((,class :inherit bold)))
    `(org-macro                               ((,class :foreground ,fg-main)))
    `(org-meta-line                           ((,class :foreground ,fg-inactive)))
@@ -362,7 +362,7 @@ Respected Only in GUI frame"
    `(org-mode-line-clock-overrun             ((,class :foreground ,error)))
    `(org-priority                            ((,class :foreground ,bg-main)))
    `(org-property-value                      ((,class :foreground ,c-var)))
-   `(org-quote                               ((,class :inherit bold :foreground ,fg-main)))
+   `(org-quote                               ((,class :inherit italic :foreground ,fg-main :weight medium)))
    `(org-scheduled                           ((,class :foreground ,fg-main)))
    `(org-scheduled-previously                ((,class :foreground ,fg-dim)))
    `(org-scheduled-today                     ((,class :foreground ,fg-main)))
@@ -845,7 +845,7 @@ Respected Only in GUI frame"
    `(ement-room-user                    ((,class :inherit bold :foreground ,heading-3)))
 
 ;;; --- Erc
-   ;; `(erc-action-face                    ((,class :foreground ,cyan-alt-other)))
+   `(erc-action-face                    ((,class :foreground ,c-keyword)))
    `(erc-bold-face                      ((,class :inherit bold)))
    `(erc-button                         ((,class :inherit button)))
    ;; `(erc-command-indicator-face         ((,class :inherit bold :foreground ,cyan-alt)))
@@ -1128,7 +1128,12 @@ Respected Only in GUI frame"
    `(mini-echo-battery                          ((,class :foreground ,c-keyword)))
 
 ;;; --- vundo
-   `(vundo-highlight                            ((,class :inherit (bold vundo-nodeatom) :foreground ,link)))))
+   `(vundo-default                              ((,class :inherit default)))
+   `(vundo-node                                 ((,class )))
+   `(vundo-saved                                ((,class :inherit bold :foreground ,code)))
+   `(vundo-last-saved                           ((,class :inherit bold :foreground ,c-keyword)))
+   ;; `(vundo-branch-stem                          ((,class :inherit ,c-type)))
+   `(vundo-highlight                            ((,class :inherit (bold vundo-node) :foreground ,link)))))
 
 ;;;###autoload
 (when (and (boundp 'custom-theme-load-path) load-file-name)
