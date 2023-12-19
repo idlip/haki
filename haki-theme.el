@@ -411,7 +411,7 @@ Respected Only in GUI frame"
    `(org-modern-statistics                   ((,class :inherit org-modern-done)))
    `(org-modern-horizontal-rule              ((,class :strike-through ,fg-inactive :inherit org-hide)))
    `(org-modern-date-active                  ((,class :inherit org-modern-done)))
-   `(org-modern-date-inactive                ((,class :foreground ,bg-inactive :background ,fg-comment :inherit 'org-modern-label)))
+   `(org-modern-date-inactive                ((,class :foreground ,bg-inactive :background ,fg-comment)))
 
 ;;; --- Olivetti (No fringe, so it looks good)
    `(fringe          ((,class )))
