@@ -569,7 +569,7 @@ Respected Only in GUI frame"
 
 ;;; --- embark
    `(embark-keybinding                 ((,class :inherit marginalia-key)))
-   `(embark-target                     ((,class :inherit (org-target highlight))))
+   `(embark-target                     ((,class :inherit (org-target region))))
 
 
 ;;; --- Jinx
