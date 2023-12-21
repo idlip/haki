@@ -286,7 +286,7 @@ Respected Only in GUI frame"
    `(keycast-key                        ((,class :foreground ,bg-main)))
 ;;; --- line numbers
    `(line-number                        ((,class :inherit fixed-pitch :weight medium :foreground ,fg-inactive)))
-   `(line-number-current-line           ((,class :inherit fixed-pitch :weight ultra-bold :background ,fg-region :foreground ,fg-main :box ,haki-region)))
+   `(line-number-current-line           ((,class :inherit fixed-pitch :weight ultra-bold :background ,fg-region :foreground ,fg-main :box (:line-width (-1 . -1) :color ,haki-region))))
    `(line-number-major-tick             ((,class :inherit line-number :foreground ,error)))
    `(line-number-minor-tick             ((,class :inherit line-number :foreground ,fg-inactive)))
 
