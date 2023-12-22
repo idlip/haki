@@ -1,5 +1,6 @@
 ((emacs-lisp-mode . ((indent-tabs-mode . nil)
                      (tab-width . 4)
                      (fill-column . 80)
+                     (outline-minor-mode . t)
                      (header-line-format . "order -> :family :font :width :height :weight :slant :underline :foreground :background :extend :inherit")
                      )))
