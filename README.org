@@ -119,8 +119,21 @@ Since its new, there is not much, but I do have some surprise!
  - Just like a theme, if you are looking to try new font. I can suggest you to check [[https://github.com/arrowtype/recursive][Recursive font]]
    I use (fork) them patched with nerd icons in OnePiece style naming, check out [[https:github.com/idlip/code-d-font][Code D Font]]
 
-* 📚 Plan
-- [ ] Avoid too much =:inherit= in faces.
+* TODO 📚 Plan
+- [X] Avoid too much =:inherit= in faces.
+- [ ] Test full picture on =org-agenda=.
+- [ ] Make it to not conflict with user's customization at all.
+  - Idea is to define-faces =haki-cyan-alt= and use it for all faces.
+  - So user can change anything and not worry about it affecting other faces.
+- [ ] Work on =magit= faces more.
+- [ ] =ement= and =erc= faces.
+
+* DONE Change-log
+*** <2023-12-22> version: 0.4
+- Major revamp, and fixes.
+- Fixed lot of inherit faces, fix inherit to not depend on external package.
+- Tried to minimize =:inherit= as there should be minimal conflict with user's customization.
+- Most of the faces depended on =org-mode=, fixed it. So others may not wait until org-mode is loaded.
 * 🔗 Contributing
 There's always a space for improvement.
  + If you want to open an *issue*, Please attach a pic of the issue state.
