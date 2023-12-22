@@ -119,6 +119,8 @@ Since its new, there is not much, but I do have some surprise!
  - Just like a theme, if you are looking to try new font. I can suggest you to check [[https://github.com/arrowtype/recursive][Recursive font]]
    I use (fork) them patched with nerd icons in OnePiece style naming, check out [[https:github.com/idlip/code-d-font][Code D Font]]
 
+* 📚 Plan
+- [ ] Avoid too much =:inherit= in faces.
 * 🔗 Contributing
 There's always a space for improvement.
  + If you want to open an *issue*, Please attach a pic of the issue state.
