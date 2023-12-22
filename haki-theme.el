@@ -7,7 +7,7 @@
 ;; Maintainer: Dilip
 ;; URL: https://github.com/idlip/haki
 ;; Created: 2023
-;; Version: 0.3
+;; Version: 0.4
 ;; Package-Requires: ((emacs "27.1"))
 ;; Keywords: faces, theme, accessibility
 
@@ -29,7 +29,10 @@
 ;;
 ;; Haki is an elegant, high-contrast dark theme in modern sense.
 ;; Looks and distinguish-ability is maintained.
+;;
+;; theme was inspired on modus-vivendi and minad's packages
 ;; I hope you will love it ;)
+;;
 ;;
 
 ;;; Code:
@@ -38,7 +41,7 @@
 (unless (>= emacs-major-version 27)
   (error "Haki theme requires Emacs 27.1 or later!"))
 
-(deftheme haki "An Elegant, tailored theme for Modern Emacs.")
+(deftheme haki "An elegant, high-contrast dark theme in modern sense.")
 
 (defgroup haki-theme ()
   "Haki theme options for User's preference.
@@ -46,27 +49,32 @@ Make sure to reload the theme after setting the values!"
   :group 'faces)
 
 ;; I know docstring is more than 80 should I minimize it?
-(defcustom haki-region "#2e8b6d"
-  "Color choice for haki theme region background.
-Usually dark or medium variant is *recommended* for text visibility.
-It will be used in `region' selection.
+(defface haki-region
+  '((t (:background "#2e8b57" :foreground "#ffffff")))
+  "Face for haki-theme region areas.
 
-Value can be hex value or color name as string.
+Color choice for haki theme region background.
+Usually dark or medium variant is recommended for text visibility.
+
+Note: Make sure not to use many face property here,
+as it is inherited for `region' and its sensible areas.
 
 `haki-change-region' funtion gives interactive choice.
 
--- Requires reloading the theme to display changes --"
-  :group 'haki-theme
-  :type 'string)
+Do make sure to set foreground, so it is contrasts background."
+  :group 'haki-theme)
+
+(defface haki-highlight
+  '((t (:background "#fafad2" :foreground "#1a1a1a")))
+  "Face for highlighting in sensible areas."
+  :group 'haki-theme)
 
 (defun haki-change-region ()
   "Interactively choose a COLOR to set it as `haki-region'."
   (interactive)
-  (let ((choice (string-trim
-                 (call-interactively #'read-color))))
-    (setopt haki-region choice)
-    (load-theme 'haki t)
-    (kill-new choice)))
+  (let* ((choice (string-trim (read-color))))
+    (set-face-attribute 'haki-region nil :background choice))
+    (load-theme 'haki t))
 
 ;;; --- Variables to use different fonts
 (defcustom haki-code-font `unspecified' ;; we can use it for both verbatim and code face
@@ -127,11 +135,12 @@ Tip: Use 'VictorMono' or 'Maple Mono'."
       (fg-main       "#FFFFFF")
       (fg-dim        "#D8DEE9")
       (fg-inactive   "#6c7b8b")
-      (fg-region     haki-region) ;; Changeable via setq
+      ;; (fg-region     haki-region)
       (cursor        "#ffe4e1")
 
       ;; --- Common logics
       (error      "#ee6363")
+      (warning    "#fafad2")
       (link       "#b4befe")
       (todo       "#54ff9f")
       (done       "#b4dddd")
@@ -140,6 +149,8 @@ Tip: Use 'VictorMono' or 'Maple Mono'."
       (clock      "#eedc82")
       (bg-tag     "#ffe1ff")
       (bracket    "#ffeeee")
+      (date       "#8ee5ee")
+      (info-doc   "#bcd2ee")
 
       ;; --- Colours are named in order from 1 --> 5
       ;; --- 1 as pale, and progressively intense, 5 as dark
@@ -147,6 +158,7 @@ Tip: Use 'VictorMono' or 'Maple Mono'."
       ;; --- Rgb
       (blue-5   "#b0e0e6")
       (yellow-5 "#eee685")
+
 
       ;; -- For Code
       (c-keyword     "#22fefe")
@@ -232,58 +244,68 @@ Respected Only in GUI frame"
 ;;; --- General Order: :family :font :width :height :weight :slant :underline :foreground :background :extend :inherit
 ;;; --- Do it as per what should overwrite what
 
-   `(default                 ((,class :background ,bg-main :foreground ,fg-main)))
+   `(default                 ((,class :foreground ,fg-main :background ,bg-main)))
 
 ;;; -- Base
-   `(mode-line               ((,class :background ,bg-dim :box (:line-width (2 . 1) :color ,cursor) :weight medium :height 0.9)))
-   `(mode-line-inactive      ((,class :inherit mode-line :foreground ,fg-dim :background ,bg-inactive)))
-   `(header-line             ((,class :inherit mode-line :foreground ,title)))
+   `(mode-line               ((,class :inherit fixed-pitch :background ,bg-dim :box (:line-width (5 . 1) :color ,cursor) :weight medium :height 0.9)))
+   `(mode-line-inactive      ((,class :foreground ,fg-inactive :height 0.9)))
+   `(mode-line-emphasis      ((,class :inherit bold :foreground ,heading-2)))
+   `(mode-line-active        ((,class :inherit mode-line)))
+   `(mode-line-highlight     ((,class :inherit highlight)))
+
+   `(header-line             ((,class :foreground ,title)))
 
    ;; Structural
    `(bold                      ((,class :weight bold)))
+   `(error                     ((,class :weight bold :foreground ,error)))
+   `(warning                   ((,class :weight bold :foreground ,warning)))
    `(italic                    ((,class :slant italic)))
    `(bold-italic               ((,class :slant italic :weight bold)))
-   `(underline                 ((,class :underline t)))
-   `(region                    ((,class :background ,fg-region :weight semi-bold)))
-   `(highlight                 ((,class :inherit bold :background ,yellow-5 :foreground ,bg-inactive)))
+   `(underline                 ((,class :underline (:line-width (1 . 1) :color ,cursor))))
+   `(region                    ((,class :inherit haki-region :weight semi-bold)))
+   `(highlight                 ((,class :inherit (bold haki-highlight))))
    `(fixed-pitch-serif         ((,class :inherit default)))
    `(variable-pitch            ((,class )))
    `(cursor                    ((,class :background ,cursor)))
-   `(hl-line                   ((,class :extend t :background ,bg-dim)))
-   `(link                      ((,class :font ,haki-link-font :slant italic :underline t :weight medium :foreground ,link :height 1.1)))
+   `(hl-line                   ((,class :background ,bg-inactive :extend t)))
+   `(link                      ((,class :font ,haki-link-font  :weight medium :underline t :foreground ,link)))
    `(button                    ((,class :inherit (bold link) :foreground ,c-operator)))
-   `(separator-line            ((,class :underline ,fg-comment :extend t)))
+   `(separator-line            ((,class :inherit underline)))
 
-   ;; --- Minibuffer
-   `(completions-annotations         ((,class :inherit italic :foreground ,blue-5)))
+   ;; --- completions
+   `(completions-annotations         ((,class :inherit italic :foreground ,warning)))
    `(completions-common-part         ((,class :foreground ,heading-1)))
-   `(completions-first-difference    ((,class )))
+   `(completions-first-difference    ((,class :foreground ,heading-2)))
+   `(completions-highlight           ((,class :inherit highlight)))
+   `(completions-group-title         ((,class :inherit shadow)))
 
    ;; Modeline
-   `(doom-modeline-bar                  ((,class :bold t :background ,haki-region)))
-   `(doom-modeline-buffer-file          ((,class :inherit  (doom-modeline bold) :foreground ,heading-1)))
-   `(doom-modeline-buffer-major-mode    ((,class :inherit  (doom-modeline-emphasis bold) :foreground ,heading-2)))
-   `(doom-modeline-time                 ((,class :inherit doom-modeline-buffer-file :foreground ,heading-6)))
+   `(doom-modeline                      ((,class :inherit nil)))
+   `(doom-modeline-bar-inactive         ((,class :inherit mode-line-inactive)))
+   `(doom-modeline-bar                  ((,class :inherit region)))
+   `(doom-modeline-buffer-file          ((,class :inherit  (doom-modeline bold) :foreground ,title)))
+   `(doom-modeline-buffer-major-mode    ((,class :inherit  (doom-modeline-emphasis bold) :foreground ,heading-1)))
+   `(doom-modeline-time                 ((,class :foreground ,clock)))
    `(doom-modeline-info                 ((,class :inherit  (doom-modeline success bold))))
-   `(doom-modeline-buffer-modified      ((,class :inherit (doom-modeline bold) :foreground ,heading-4)))
-   `(doom-modeline-emphasis             ((,class :inherit  (doom-modeline success bold))))
+   `(doom-modeline-buffer-modified      ((,class :inherit (doom-modeline bold) :foreground ,heading-9)))
+   `(doom-modeline-emphasis             ((,class :inherit  (doom-modeline mode-line-emphasis))))
 
 ;;; --- isearch
-   `(isearch                            ((,class :foreground ,c-var)))
-   `(isearch-fail                       ((,class :foreground ,error)))
-   `(isearch-group-1                    ((,class :foreground ,c-regexc)))
+   `(isearch                            ((,class :inherit region)))
+   `(isearch-fail                       ((,class :background ,error)))
+   `(isearch-group-1                    ((,class :background ,c-regexc)))
    `(isearch-group-2                    ((,class :foreground ,c-regexb)))
    `(lazy-highlight                     ((,class :inherit highlight)))
-   `(match                              ((,class :background ,error :foreground ,bg-inactive)))
-   `(query-replace                      ((,class :inherit match)))
+   `(match                              ((,class :inherit success)))
+   `(query-replace                      ((,class :background ,error :foreground ,bg-inactive)))
 ;;; --- keycast
    `(keycast-command                    ((,class :inherit bold)))
    `(keycast-key                        ((,class :foreground ,bg-main)))
 ;;; --- line numbers
    `(line-number                        ((,class :inherit fixed-pitch :weight medium :foreground ,fg-inactive)))
-   `(line-number-current-line           ((,class :inherit fixed-pitch :weight ultra-bold :background ,fg-region :foreground ,fg-main :box (:line-width (-1 . -1) :color ,haki-region))))
-   `(line-number-major-tick             ((,class :inherit line-number :foreground ,error)))
-   `(line-number-minor-tick             ((,class :inherit line-number :foreground ,fg-inactive)))
+   `(line-number-current-line           ((,class :inherit (fixed-pitch region) :weight ultra-bold)))
+   `(line-number-major-tick             ((,class :inherit (line-number highlight))))
+   `(line-number-minor-tick             ((,class :inherit line-number :foreground ,error)))
 
 ;;; --- font locks
    `(font-lock-doc-face                        ((,class :foreground ,fg-dim :slant italic)))
@@ -313,104 +335,111 @@ Respected Only in GUI frame"
    `(font-lock-misc-punctuation-face          ((,class :inherit font-lock-punctuation-face)))
    `(font-lock-number-face                    ((,class)))
    `(font-lock-property-use-face              ((,class :inherit font-lock-property-name-face)))
-   `(font-lock-operator-face                  ((,class)))
    `(font-lock-regexp-face                    ((,class :inherit font-lock-string-face)))
    `(font-lock-variable-use-face              ((,class :inherit font-lock-variable-name-face)))
 
 
 ;;; --- Org mode
-   `(org-level-1                             ((,class :font ,haki-heading-font :weight bold :foreground ,heading-1 :height 1.30)))
-   `(org-level-2                             ((,class :font ,haki-heading-font :weight bold :foreground ,heading-2 :height 1.25)))
-   `(org-level-3                             ((,class :font ,haki-heading-font :weight bold :foreground ,heading-3 :height 1.20)))
-   `(org-level-4                             ((,class :font ,haki-heading-font :weight bold :foreground ,heading-4 :height 1.15)))
-   `(org-level-5                             ((,class :font ,haki-heading-font :weight bold :foreground ,heading-5 :height 1.10)))
-   `(org-level-6                             ((,class :font ,haki-heading-font :weight bold :foreground ,heading-6 :height 1.10)))
+   `(org-level-1               ((,class :font ,haki-heading-font :weight bold :foreground ,heading-1 :height 1.30)))
+   ;; note: we are not inheriting level-1 cause it will calculate height based on level-1.
+   ;; so other level will be 1.x times on top of level-1.
+   `(org-level-2               ((,class :font ,haki-heading-font :weight bold :foreground ,heading-2 :height 1.25)))
+   `(org-level-3               ((,class :font ,haki-heading-font :weight bold :foreground ,heading-3 :height 1.20)))
+   `(org-level-4               ((,class :font ,haki-heading-font :weight bold :foreground ,heading-4 :height 1.15)))
+   `(org-level-5               ((,class :font ,haki-heading-font :weight bold :foreground ,heading-5 :height 1.10)))
+   `(org-level-6               ((,class :font ,haki-heading-font :weight bold :foreground ,heading-6 :height 1.10)))
    `(org-archived                            ((,class :foreground ,fg-dim)))
-   `(org-block                               ((,class :inherit fixed-pitch :background ,bg-dim)))
-   `(org-block-begin-line                    ((,class :inherit org-block :underline (:line-width (1 . 1) :color ,cursor) :extend t :weight semi-bold :height 0.9 :foreground ,fg-dim)))
-   `(org-block-end-line                      ((,class :inherit org-block-begin-line)))
-   `(org-checkbox                            ((,class :foreground ,yellow-5)))
+
+   `(org-block                               ((,class :inherit fixed-pitch :background ,bg-inactive)))
+   `(org-block-begin-line                    ((,class :inherit org-block :overline ,cursor :weight semi-bold :height 0.9)))
+   `(org-block-end-line                      ((,class :inherit org-block-begin-line :overline nil :underline ,cursor)))
+   `(org-inline-src-block                    ((,class :box ,cursor :height 0.8)))
+
+   `(org-checkbox                            ((,class :foreground ,clock)))
    `(org-checkbox-statistics-done            ((,class :foreground ,done)))
    `(org-checkbox-statistics-todo            ((,class :foreground ,todo)))
    `(org-clock-overlay                       ((,class :foreground ,clock)))
    `(org-code                                ((,class :font ,haki-code-font :weight medium :height 1.1 :foreground ,code)))
-   `(org-column                              ((,class :foreground ,fg-main)))
-   `(org-column-title                        ((,class :foreground ,fg-main)))
-   `(org-date                                ((,class :foreground ,fg-main)))
-   `(org-date-selected                       ((,class :foreground ,fg-main)))
-   `(org-default                             ((,class :foreground ,fg-main)))
-   `(org-document-info                       ((,class :font ,haki-sans-font :height 1.5 :weight bold :slant italic :foreground ,blue-5)))
+   `(org-verbatim                            ((,class :inherit org-code :foreground ,verbatim)))
+   `(org-column                              ((,class :background ,bg-inactive)))
+   `(org-column-title                        ((,class :background ,bg-inactive :underline t :weight bold)))
+   `(org-date                                ((,class :foreground ,bg-main :background ,date)))
+   `(org-date-selected                       ((,class :inherit haki-region :box ,cursor :weight bold)))
+   `(org-default                             ((,class :inherit default)))
+   `(org-document-info                       ((,class :font ,haki-sans-font :height 1.5 :weight bold :slant italic :foreground ,info-doc)))
    `(org-document-info-keyword               ((,class :foreground ,fg-inactive)))
-   `(org-document-title                      ((,class :font ,haki-title-font :foreground ,title :height 1.7 :weight bold :width extra-expanded)))
-   `(org-done                                ((,class :background ,done)))
+   `(org-document-title                      ((,class :font ,haki-title-font :foreground ,title :height 1.7 :weight bold)))
    `(org-drawer                              ((,class :foreground ,fg-inactive)))
-   `(org-ellipsis                            ((,class :foreground ,clock)))
-   `(org-footnote                            ((,class :foreground ,fg-main)))
-   `(org-formula                             ((,class :foreground ,fg-main)))
-   `(org-headline-done                       ((,class :foreground ,fg-dim)))
-   `(org-latex-and-related                   ((,class :foreground ,blue-5)))
+   `(org-ellipsis                            ((,class :foreground ,fg-inactive)))
+   `(org-footnote                            ((,class :inherit button)))
+   `(org-formula                             ((,class :foreground ,date)))
+   `(org-done                                ((,class :background ,done :foreground ,bg-main)))
+   `(org-headline-done                       ((,class :inherit org-done :inverse-video t)))
+   `(org-todo                                ((,class :background ,todo :foreground ,bg-main)))
+   `(org-headline-todo                       ((,class :inherit org-todo :inverse-video t)))
+   `(org-latex-and-related                   ((,class :foreground ,date)))
    `(org-link                                ((,class :inherit (link))))
-   `(org-list-dt                             ((,class :inherit bold)))
-   `(org-macro                               ((,class :foreground ,fg-main)))
+   `(org-list-dt                             ((,class :weight bold :foreground ,info-doc)))
+   `(org-macro                               ((,class :foreground ,c-keyword)))
    `(org-meta-line                           ((,class :foreground ,fg-inactive)))
-   `(org-mode-line-clock                     ((,class :foreground ,fg-dim)))
-   `(org-mode-line-clock-overrun             ((,class :foreground ,error)))
-   `(org-priority                            ((,class :foreground ,bg-main)))
-   `(org-property-value                      ((,class :foreground ,c-var)))
-   `(org-quote                               ((,class :inherit italic :foreground ,fg-main :weight medium)))
-   `(org-scheduled                           ((,class :foreground ,fg-main)))
-   `(org-scheduled-previously                ((,class :foreground ,fg-dim)))
-   `(org-scheduled-today                     ((,class :foreground ,fg-main)))
-   `(org-sexp-date                           ((,class :foreground ,bg-main)))
+   `(org-mode-line-clock                     ((,class :foreground ,date)))
+   `(org-mode-line-clock-overrun             ((,class :background ,error :foreground ,bg-main)))
+   `(org-priority                            ((,class :background ,c-type :weight semibold :foreground ,bg-main)))
+   `(org-property-value                      ((,class :foreground ,c-property)))
+
+   `(org-quote                               ((,class :slant italic :foreground ,c-type :background ,bg-inactive :extend t :weight medium)))
+   `(org-verse                               ((,class :inherit org-quote :slant normal)))
+
+
+   `(org-scheduled                           ((,class :foreground ,todo)))
+   `(org-scheduled-previously                ((,class :inherit highlight :background ,error)))
+   `(org-scheduled-today                     ((,class :inherit highlight)))
+   `(org-sexp-date                           ((,class :foreground ,date)))
    `(org-special-keyword                     ((,class :foreground ,fg-inactive)))
    `(org-table                               ((,class :inherit fixed-pitch :foreground ,c-string)))
-   `(org-table-header                        ((,class :foreground ,title :inherit (bold org-table))))
-   `(org-tag                                 ((,class :width condensed :height 0.9 :weight regular :underline nil :box (:color ,cursor :line-width (1 . -3)) :background ,bg-tag :foreground ,bg-dim)))
-   `(org-tag-group                           ((,class )))
-   `(org-target                              ((,class :foreground ,c-operator :slant italic)))
-   `(org-time-grid                           ((,class :foreground ,bg-main)))
-   `(org-todo                                ((,class :foreground ,todo :background ,bg-dim)))
-   `(org-upcoming-deadline                   ((,class :foreground ,error :underline t)))
-   `(org-verbatim                            ((,class :inherit org-code :foreground ,verbatim)))
-   `(org-verse                               ((,class )))
-   `(org-warning                             ((,class :foreground ,error)))
-   `(org-agenda-calendar-event               ((,class )))
-   `(org-agenda-calendar-sexp                ((,class )))
+   `(org-table-header                        ((,class :inherit org-table :foreground ,title )))
+   `(org-tag                                 ((,class :height 0.9 :box ,cursor :background ,bg-tag :foreground ,bg-main)))
+   `(org-tag-group                           ((,class :background ,cursor)))
+   `(org-target                              ((,class :inherit button)))
+   `(org-time-grid                           ((,class :foreground ,clock)))
+   `(org-upcoming-deadline                   ((,class :inherit highlight :background ,error)))
+   `(org-warning                             ((,class :inherit font-lock-warning-face)))
+   `(org-agenda-calendar-event               ((,class :foreground ,info-doc)))
+   `(org-agenda-calendar-sexp                ((,class :inherit org-agenda-calendar-event)))
    `(org-agenda-clocking                     ((,class :foreground ,clock)))
-   `(org-agenda-column-dateline              ((,class :background ,bg-dim)))
-   `(org-agenda-current-time                 ((,class :foreground ,blue-5)))
-   `(org-agenda-date                         ((,class :inherit bold :foreground ,clock)))
-   `(org-agenda-date-today                   ((,class :inherit doom-modeline-time)))
-   `(org-agenda-date-weekend                 ((,class )))
-   `(org-agenda-date-weekend-today           ((,class )))
-   `(org-agenda-diary                        ((,class :inherit org-agenda-calendar-sexp)))
+   `(org-agenda-column-dateline              ((,class :foreground ,date)))
+   `(org-agenda-current-time                 ((,class :background ,clock :foreground ,bg-main)))
+   `(org-agenda-date                         ((,class :foreground ,date)))
+   `(org-agenda-date-today                   ((,class :weight bold :extend t :background ,date :foreground ,bg-main)))
+   `(org-agenda-date-weekend                 ((,class :slant italic :foreground ,todo)))
+   `(org-agenda-date-weekend-today           ((,class :slant italic :foreground ,date)))
+   `(org-agenda-diary                        ((,class :inherit org-agenda-calendar-event)))
    `(org-agenda-dimmed-todo-face             ((,class :inherit shadow)))
    `(org-agenda-done                         ((,class :inherit org-done)))
    `(org-agenda-filter-category              ((,class :inherit bold :foreground ,c-keyword)))
    `(org-agenda-filter-effort                ((,class :inherit bold :foreground ,c-keyword)))
-   `(org-agenda-filter-regexp                ((,class :inherit bold :foreground ,c-keyword)))
-   `(org-agenda-filter-tags                  ((,class :inherit bold :foreground ,c-keyword)))
+   `(org-agenda-filter-regexp                ((,class :inherit bold :foreground ,c-regexb)))
+   `(org-agenda-filter-tags                  ((,class :inherit bold :background ,bg-tag :foreground ,bg-main)))
    `(org-agenda-restriction-lock             ((,class :background ,bg-dim :foreground ,fg-dim)))
-   `(org-agenda-structure                    ((,class :inherit magit-log-date)))
-   `(org-agenda-structure-filter             ((,class :inherit org-agenda-structure :foreground ,c-warning)))
-   `(org-agenda-structure-secondary          ((,class :foreground ,c-warning)))
+   `(org-agenda-structure                    ((,class :foreground ,title :height 1.2)))
+   `(org-agenda-structure-filter             ((,class :inherit org-agenda-structure)))
+   `(org-agenda-structure-secondary          ((,class )))
 
 ;;; --- Org Modern
-   `(org-modern-tag                          ((,class :inherit (org-modern-label))))
-   `(org-modern-done                         ((,class :inherit (org-done org-modern-label))))
-   `(org-modern-todo                         ((,class :weight semibold :inverse-video t :inherit (org-todo org-modern-label))))
-   `(org-modern-label                        ((,class :width condensed :height 0.9 :weight regular :underline nil :box (:color ,cursor :line-width (1 . -3)) :background ,bg-tag :foreground ,bg-dim)))
+   `(org-modern-tag                          ((,class :inherit (org-tag))))
+   `(org-modern-done                         ((,class :inherit (org-done))))
+   `(org-modern-todo                         ((,class :inherit (org-todo))))
    `(org-modern-symbol                       ((,class :inherit bold)))
-   `(org-modern-priority                     ((,class :weight semibold :inverse-video t :inherit   (org-priority org-modern-label))))
-   `(org-modern-block-name                   ((,class :inherit (org-block-begin-line))))
-   `(org-modern-statistics                   ((,class :inherit org-modern-done)))
-   `(org-modern-horizontal-rule              ((,class :strike-through ,fg-inactive :inherit org-hide)))
-   `(org-modern-date-active                  ((,class :inherit org-modern-done)))
+   `(org-modern-priority                     ((,class :inherit (org-priority))))
+   `(org-modern-block-name                   ((,class :inherit (org-block-begin-line) :foreground ,code)))
+   `(org-modern-statistics                   ((,class :inherit org-checkbox-statistics-done)))
+   `(org-modern-horizontal-rule              ((,class :strike-through ,fg-dim :inherit org-hide)))
+   `(org-modern-date-active                  ((,class :inherit org-date)))
    `(org-modern-date-inactive                ((,class :foreground ,bg-inactive :background ,fg-comment)))
 
 ;;; --- Olivetti (No fringe, so it looks good)
-   `(fringe          ((,class )))
-   `(olivetti-fringe ((,class )))
+   `(fringe          ((,class :foreground ,bg-main)))
+   `(olivetti-fringe ((,class :inherit fringe)))
 
 ;;; --- Rainbow delimiters (parenthesis world)
    `(rainbow-delimiters-base-face                 ((,class :inherit default)))
@@ -426,32 +455,32 @@ Respected Only in GUI frame"
    `(rainbow-delimiters-base-error-face           ((,class :foreground ,error :underline ,link)))
 
 ;;; --- Dired
-   `(dired-broken-symlink       ((,class :inherit button :foreground ,error)))
-   `(dired-directory            ((,class :inherit bold :foreground ,heading-9)))
-   `(dired-flagged              ((,class :foreground ,c-operator)))
-   `(dired-header               ((,class :inherit bold :foreground ,c-var)))
+   `(dired-broken-symlink       ((,class :background ,error :underline t :foreground ,fg-main)))
+   `(dired-directory            ((,class :inherit bold :foreground ,heading-4)))
+   `(dired-flagged              ((,class :inherit highlight :background ,error)))
+   `(dired-header               ((,class :height 1.5 :weight bold :inherit region)))
    `(dired-ignored              ((,class :inherit shadow)))
-   `(dired-mark                 ((,class :inherit bold)))
-   `(dired-marked               ((,class :foreground ,c-const)))
-   `(dired-perm-write           ((,class :inherit shadow)))
-   `(dired-symlink              ((,class :inherit button :foreground ,c-warning :underline t)))
+   `(dired-mark                 ((,class :inherit dired-flagged)))
+   `(dired-marked               ((,class :inherit highlight)))
+   `(dired-perm-write           ((,class :weight bold :foreground ,c-keyword)))
+   `(dired-symlink              ((,class :inherit button)))
    `(dired-warning              ((,class :inherit warning)))
 ;;; --- dired-async
    `(dired-async-failures       ((,class :inherit error)))
-   `(dired-async-message        ((,class :inherit bold)))
+   `(dired-async-message        ((,class :inherit warning)))
    `(dired-async-mode-message   ((,class :inherit bold)))
 ;;; --- dired-git
-   `(dired-git-branch-else      ((,class :inherit bold :foreground ,fg-main)))
-   `(dired-git-branch-master    ((,class :inherit bold :foreground ,fg-main)))
+   `(dired-git-branch-else      ((,class :inherit bold :foreground ,verbatim)))
+   `(dired-git-branch-master    ((,class :inherit bold :foreground ,code)))
 ;;; --- dired-git-info
    `(dgi-commit-message-face    ((,class :foreground ,c-keyword)))
 ;;; --- dired-subtree
-   `(dired-subtree-depth-1-face (()))
-   `(dired-subtree-depth-2-face (()))
-   `(dired-subtree-depth-3-face (()))
-   `(dired-subtree-depth-4-face (()))
-   `(dired-subtree-depth-5-face (()))
-   `(dired-subtree-depth-6-face (()))
+   `(dired-subtree-depth-1-face ((,class :foreground ,heading-1)))
+   `(dired-subtree-depth-2-face ((,class :foreground ,heading-2)))
+   `(dired-subtree-depth-3-face ((,class :foreground ,heading-3)))
+   `(dired-subtree-depth-4-face ((,class :foreground ,heading-4)))
+   `(dired-subtree-depth-5-face ((,class :foreground ,heading-5)))
+   `(dired-subtree-depth-6-face ((,class :foreground ,heading-6)))
 
 ;;; --- all-the-icons
    `(all-the-icons-dired-dir-face    ((,class :inherit bold :foreground ,c-func)))
@@ -484,56 +513,61 @@ Respected Only in GUI frame"
    `(all-the-icons-red-2             ((,class :foreground "#f4a460")))
    `(all-the-icons-yellow            ((,class :foreground "#eedc82")))
 
+;;; --- nerd-icons
+   `(nerd-icons-dired-dir-face       ((,class :foreground ,heading-7)))
+
 ;;; --- Elfeed
    `(elfeed-search-tag-face                            ((,class :weight normal :height 0.9 :foreground ,heading-7 :slant italic)))
-   `(elfeed-search-date-face                           ((,class :height 0.8 :width condensed :foreground ,c-var)))
-   `(elfeed-search-feed-face                           ((,class :weight medium :foreground ,heading-9)))
-   `(elfeed-search-filter-face                         ((,class :foreground ,heading-6)))
-   `(elfeed-search-last-update-face                    ((,class :foreground ,fg-dim)))
+   `(elfeed-search-date-face                           ((,class :height 0.8 :foreground ,date)))
+   `(elfeed-search-feed-face                           ((,class :weight medium :foreground ,info-doc)))
+   `(elfeed-search-filter-face                         ((,class :inherit region)))
+   `(elfeed-search-last-update-face                    ((,class :weight bold :background ,fg-dim :foreground ,bg-main)))
    `(elfeed-search-title-face                          ((,class :font ,haki-heading-font :foreground ,fg-comment :height 1.1)))
-   `(elfeed-search-unread-count-face                   ((,class :foreground ,blue-5)))
+   `(elfeed-search-unread-count-face                   ((,class :weight bold :background ,done :foreground ,bg-main)))
    `(elfeed-search-unread-title-face                   ((,class :inherit bold :foreground ,title)))
    `(elfeed-log-date-face                              ((,class :inherit elfeed-search-date-face)))
    `(elfeed-log-info-level-face                        ((,class :inherit elfeed-search-tag-face)))
    `(elfeed-log-debug-level-face                       ((,class :foreground ,link)))
-   `(elfeed-log-warn-level-face                        ((,class :foreground ,error)))
-   `(elfeed-log-error-level-face                       ((,class :foreground ,fg-main)))
+   `(elfeed-log-warn-level-face                        ((,class :foreground ,warning)))
+   `(elfeed-log-error-level-face                       ((,class :foreground ,error)))
 
 ;;; --- The five package for modern emacs
 ;;; --- Vertico
    `(vertico-current           ((,class :extend t :inherit (region))))
 
 ;;; --- Corfu
-   `(corfu-current                     ((,class :inherit vertico-current)))
-   `(corfu-bar                         ((,class :background ,fg-dim)))
-   `(corfu-border                      ((,class :background ,fg-inactive)))
+   `(corfu-current                     ((,class :inherit region :extend t)))
+   `(corfu-bar                         ((,class :background ,cursor)))
+   `(corfu-border                      ((,class )))
    `(corfu-default                     ((,class :background ,bg-dim)))
    `(corfu-popupinfo                   ((,class :inherit corfu-default :extend t)))
    `(corfu-annotations                 ((,class :inherit completions-annotations)))
+   `(corfu-echo                        ((,class :inherit completions-annotations)))
+
 
 ;;; --- Consult
    `(consult-async-split               ((,class :inherit error)))
-   `(consult-file                      ((,class :inherit bold :foreground ,fg-comment)))
-   `(consult-key                       ((,class)))
+   `(consult-file                      ((,class :inherit bold :foreground ,heading-7)))
+   `(consult-key                       ((,class :inherit button)))
    `(consult-buffer                    ((,class :foreground ,fg-dim)))
    `(consult-imenu-prefix              ((,class :inherit shadow)))
-   `(consult-line-number               ((,class :inherit shadow)))
-   `(consult-line-number-prefix        ((,class :inherit shadow)))
-   `(consult-preview-line              ((,class :inherit (vertico-current))))
-   `(consult-preview-match             ((,class :foreground ,link :background ,bg-inactive)))
+   `(consult-line-number               ((,class :inherit bold)))
+   `(consult-line-number-prefix        ((,class :inherit line-number)))
+   `(consult-preview-line              ((,class :weigth bold :inherit region)))
+   `(consult-preview-match             ((,class :inherit highlight)))
 
 ;;; --- Orderless
-   `(orderless-match-face-0            ((,class :foreground ,heading-1)))
-   `(orderless-match-face-1            ((,class :foreground ,heading-2)))
-   `(orderless-match-face-2            ((,class :foreground ,heading-6)))
+   `(orderless-match-face-0            ((,class :foreground ,title)))
+   `(orderless-match-face-1            ((,class :foreground ,heading-1)))
+   `(orderless-match-face-2            ((,class :foreground ,heading-2)))
    `(orderless-match-face-3            ((,class :foreground ,heading-5)))
 
 ;;; --- Marginalia
    `(marginalia-archive                ((,class :foreground ,c-operator)))
-   `(marginalia-char                   ((,class :foreground ,blue-5)))
-   `(marginalia-date                   ((,class :foreground ,verbatim)))
-   `(marginalia-documentation          ((,class :slant italic :foreground ,c-warning)))
-   `(marginalia-file-name              (( )))
+   `(marginalia-char                   ((,class :foreground ,c-string)))
+   `(marginalia-date                   ((,class :foreground ,date)))
+   `(marginalia-documentation          ((,class :inherit completions-annotations)))
+   `(marginalia-file-name              ((,class :foreground ,todo)))
    `(marginalia-file-owner             ((,class :inherit shadow)))
    `(marginalia-file-priv-dir          ((,class :foreground ,c-regexb)))
    `(marginalia-file-priv-exec         ((,class :foreground ,c-const)))
@@ -542,13 +576,13 @@ Respected Only in GUI frame"
    `(marginalia-file-priv-read         ((,class :foreground ,c-builtin)))
    `(marginalia-file-priv-write        ((,class :foreground ,fg-main)))
    `(marginalia-function               ((,class :foreground ,c-func)))
-   `(marginalia-key                    ((,class :inherit bold :foreground ,c-var)))
+   `(marginalia-key                    ((,class :inherit bold :foreground ,c-operator)))
    `(marginalia-lighter                ((,class :inherit shadow)))
    `(marginalia-list                   ((,class :inherit shadow)))
    `(marginalia-mode                   ((,class :foreground ,heading-2)))
    `(marginalia-modified               ((,class :inherit warning)))
    `(marginalia-null                   ((,class :inherit shadow)))
-   `(marginalia-number                 ((,class :inherit consult-line-number)))
+   `(marginalia-number                 ((,class :inherit font-lock-constant-face)))
    `(marginalia-size                   ((,class :foreground ,c-string)))
    `(marginalia-string                 ((,class :foreground ,c-string)))
    `(marginalia-symbol                 ((,class :foreground ,c-builtin)))
@@ -560,41 +594,48 @@ Respected Only in GUI frame"
 ;;; --- Tempel
    `(tempel-form                       ((,class :inherit tempel-default :foreground ,clock :box ,clock)))
    `(tempel-field                      ((,class :inherit tempel-default :foreground ,todo :box ,todo)))
-   `(tempel-default                    ((,class :inherit (bold italic) :foreground ,c-warning :box ,c-warning)))
+   `(tempel-default                    ((,class :inherit (bold italic) :foreground ,date :box ,cursor)))
 
 ;;; --- embark
-   `(embark-keybinding                 ((,class :inherit marginalia-key)))
-   `(embark-target                     ((,class :inherit (org-target region))))
-
+   `(embark-keybinding                 ((,class :inherit font-lock-operator-face)))
+   `(embark-target                     ((,class :inherit region)))
+   `(embark-keymap                     ((,class :inherit warning)))
+   `(embark-selected                   ((,class :foreground ,error)))
+   `(embark-collect-candidate          ((,class :foreground ,cursor)))
+   `(embark-verbose-indicator-title    ((,class :weight bold :height 1.3 :inherit region)))
+   `(embark-verbose-indicator-documentation   ((,class :inherit completions-annotations)))
 
 ;;; --- Jinx
+   `(jinx-key                          ((,class :inherit completions-annotations)))
+   `(jinx-annotation                   ((,class :inherit completions-annotations)))
+   `(jinx-save                         ((,class :inherit error)))
    `(jinx-accept                       ((,class :inherit font-lock-negation-char-face)))
-   `(jinx-highlight                    ((,class :background ,yellow-5 :foreground ,bg-inactive)))
-   `(jinx-misspelled                   ((,class :underline ,yellow-5)))
+   `(jinx-highlight                    ((,class :inherit highlight)))
+   `(jinx-misspelled                   ((,class :underline (:color ,warning :style wave))))
 
 ;;; --- Dictionary (better use sdcv)
    `(dictionary-button-face            ((,class :inherit bold)))
    `(dictionary-reference-face         ((,class :inherit link)))
-   `(dictionary-word-definition-face   (( )))
+   `(dictionary-word-definition-face   ((,class :inherit font-lock-doc-face )))
    `(dictionary-word-entry-face        ((,class :inherit font-lock-comment-face)))
 
 ;;; --- Shr
-   `(shr-abbreviation     ((,class :inherit (org-list-dt org-verbatim))))
-   `(shr-code             ((,class :inherit (org-block fixed-pitch))))
-   `(shr-h1               ((,class :inherit message-header-subject)))
-   `(shr-h2               ((,class :inherit org-level-1)))
-   `(shr-h3               ((,class :inherit org-level-3)))
-   `(shr-h4               ((,class :inherit org-level-4)))
-   `(shr-h5               ((,class :inherit org-level-5)))
-   `(shr-h6               ((,class :inherit org-level-6)))
-   `(shr-selected-link    ((,class :inherit link :box t)))
-   `(shr-link             ((,class :inherit link :foreground ,link)))
+   `(shr-abbreviation     ((,class :weight bold :foreground ,info-doc)))
+   `(shr-code             ((,class :inherit (fixed-pitch) :background ,bg-inactive)))
+   `(shr-h1               ((,class :font ,haki-title-font :weight bold :height 1.8 :foreground ,title)))
+   `(shr-h2               ((,class :font ,haki-heading-font :weight bold :foreground ,heading-1 :height 1.30)))
+   `(shr-h3               ((,class :font ,haki-heading-font :weight bold :foreground ,heading-2 :height 1.25)))
+   `(shr-h4               ((,class :font ,haki-heading-font :weight bold :foreground ,heading-3 :height 1.20)))
+   `(shr-h5               ((,class :font ,haki-heading-font :weight bold :foreground ,heading-4 :height 1.15)))
+   `(shr-h6               ((,class :font ,haki-heading-font :weight bold :foreground ,heading-5 :height 1.10)))
+   `(shr-selected-link    ((,class :inherit link :slant italic)))
+   `(shr-link             ((,class :inherit link)))
    `(shr-text             ((,class :inherit variable-pitch-text)))
 
 ;;; --- eww
    `(eww-invalid-certificate      ((,class :foreground ,error)))
    `(eww-valid-certificate        ((,class :foreground ,done)))
-   `(eww-form-checkbox            ((,class :inherit org-checkbox :height 0.9)))
+   `(eww-form-checkbox            ((,class :foreground ,clock :height 0.9)))
    `(eww-form-file                ((,class :inherit eww-form-submit :foreground ,error)))
    `(eww-form-select              ((,class :inherit eww-form-submit :foreground ,bg-tag)))
    `(eww-form-submit              ((,class :background ,bg-inactive :box t :foreground ,blue-5)))
@@ -602,23 +643,23 @@ Respected Only in GUI frame"
    `(eww-form-textarea            ((,class :inherit eww-form-text :foreground ,fg-dim)))
 
 ;;; --- Mingus
-   `(mingus-mark-face             ((,class :inherit dired-mark)))
+   `(mingus-mark-face             ((,class :foreground ,error)))
    `(mingus-artist-face           ((,class :foreground ,heading-1)))
    `(mingus-album-face            ((,class :underline t :foreground ,title)))
    `(mingus-playlist-face         ((,class :foreground ,c-operator)))
-   `(mingus-directory-face        ((,class :inherit dired-directory)))
+   `(mingus-directory-face        ((,class :foreground ,todo)))
    `(mingus-playing-face          ((,class :foreground ,heading-5)))
-   `(mingus-pausing-face          ((,class :foreground ,yellow-5)))
+   `(mingus-pausing-face          ((,class :inherit warning)))
    `(mingus-stopped-face          ((,class :foreground ,error)))
    `(mingus-song-file-face        ((,class :foreground ,c-string)))
    `(mingus-album-stale-face      ((,class :foreground ,c-regexb)))
 
 ;;; --- WhichKey
-   `(which-func                                 ((,class :inherit bold :foreground ,blue-5)))
+   `(which-func                                 ((,class :inherit bold :foreground ,date)))
    `(which-key-command-description-face         ((,class :foreground ,heading-2)))
    `(which-key-group-description-face           ((,class :foreground ,error)))
    `(which-key-highlighted-command-face         ((,class :foreground ,c-warning :underline t)))
-   `(which-key-key-face                         ((,class :inherit marginalia-key)))
+   `(which-key-key-face                         ((,class :weight bold :foreground ,c-operator)))
    `(which-key-local-map-description-face       ((,class :foreground ,heading-4)))
    `(which-key-note-face                        ((,class :foreground ,fg-comment)))
    `(which-key-docstring-face                   ((,class :inherit which-key-note-face)))
@@ -655,7 +696,6 @@ Respected Only in GUI frame"
    `(ediff-even-diff-B               ((,class :background ,bg-diff-context)))
    `(ediff-even-diff-C               ((,class :background ,bg-diff-context)))
    `(ediff-fine-diff-A               ((,class :background ,bg-removed-refine :foreground ,fg-removed)))
-   `(ediff-fine-diff-Ancestor        ((,class :inherit dtest-themes-subtle-cyan)))
    `(ediff-fine-diff-B               ((,class :background ,bg-added-refine :foreground ,fg-added)))
    `(ediff-fine-diff-C               ((,class :background ,bg-changed-refine :foreground ,fg-changed)))
    `(ediff-odd-diff-A                ((,class :inherit ediff-even-diff-A)))
@@ -675,14 +715,15 @@ Respected Only in GUI frame"
 ;;; --- Eldoc-box
    `(eldoc-box-body              ((,class :background ,bg-dim :foreground ,fg-main)))
    `(eldoc-box-border            ((,class :background ,cursor)))
+   `(eldoc-highlight-function-argument  ((,class :foreground ,c-func)))
 
 ;;; --- flycheck
    `(flycheck-error             ((,class :underline (:style wave :color ,error))))
-   `(flycheck-info              ((,class :underline (:style wave :color ,fg-region))))
-   `(flycheck-warning           ((,class :underline (:style wave :color ,yellow-5))))
+   `(flycheck-info              ((,class :underline (:style wave :color ,todo))))
+   `(flycheck-warning           ((,class :underline (:style wave :color ,warning))))
    `(flycheck-fringe-error      ((,class :inherit bold :background ,error :foreground ,bg-dim)))
    `(flycheck-fringe-info       ((,class :inherit bold :background ,cursor :foreground ,bg-dim)))
-   `(flycheck-fringe-warning    ((,class :inherit bold :background ,yellow-5 :foreground ,bg-main)))
+   `(flycheck-fringe-warning    ((,class :inherit bold :background ,warning :foreground ,bg-main)))
 
 ;;; ---  flycheck-color-mode-line
    `(flycheck-color-mode-line-error-face         ((,class :inherit flycheck-fringe-error)))
@@ -700,40 +741,35 @@ Respected Only in GUI frame"
 
 ;;; --- flymake
    `(flymake-error              ((,class :underline (:style wave :color ,error))))
-   `(flymake-note               ((,class :underline (:style wave :color ,fg-region))))
+   `(flymake-note               ((,class :underline (:style wave :color ,todo))))
    `(flymake-warning            ((,class :underline (:style wave :color ,yellow-5))))
    `(flymake-error-echo         ((,class :inherit bold :background ,error :foreground ,bg-dim)))
    `(flymake-note-echo          ((,class :inherit bold :background ,cursor :foreground ,bg-dim)))
-   `(flymake-warning-echo       ((,class :inherit bold :background ,yellow-5 :foreground ,bg-main)))
+   `(flymake-warning-echo       ((,class :inherit bold :background ,warning :foreground ,bg-main)))
 
 ;;; --- flyspell (better use jinx)
-   `(flyspell-duplicate         ((,class :inherit jinx-highlight)))
-   `(flyspell-incorrect         ((,class :inherit jinx-misspelled)))
+   `(flyspell-duplicate         ((,class :inherit highlight)))
+   `(flyspell-incorrect         ((,class :underline (:color ,warning :style wave))))
 
 ;;; --- shell-script
    `(sh-heredoc           ((,class :inherit font-lock-string-face)))
    `(sh-quoted-exec       ((,class :inherit font-lock-builtin-face)))
 
 ;;; --- shortdoc
-   `(shortdoc-heading     ((,class :inherit info-title-2)))
-   `(shortdoc-section     ((,class :inherit info-menu-header)))
-
-;;; --- doc-view
-   ;; TODO: might be in emacs30
-   ;; `(doc-view-svg-background    ((,class :color ,bg-main)))
-   ;; `(doc-view-svg-foreground    ((,class :color ,fg-main)))
+   `(shortdoc-heading     ((,class :font ,haki-heading-font :foreground ,title :height 1.2)))
+   `(shortdoc-section     ((,class :foreground ,c-var)))
 
 ;;; --- show-paren
-   `(show-paren-match               ((,class :inherit bold :foreground ,bg-inactive :background ,done)))
+   `(show-paren-match               ((,class :inherit bold :foreground ,bg-inactive :background ,todo)))
    `(show-paren-match-expression    ((,class :background ,fg-main)))
    `(show-paren-mismatch            ((,class :inherit error)))
 
 ;;; --- Message
-   `(message-cited-text-1           ((,class :inherit org-level-1)))
-   `(message-cited-text-2           ((,class :inherit org-level-2)))
-   `(message-cited-text-3           ((,class :inherit org-level-3)))
-   `(message-cited-text-4           ((,class :inherit org-level-4)))
-   `(message-header-name            ((,class :height 0.9 :foreground ,heading-7)))
+   `(message-cited-text-1           ((,class :font ,haki-heading-font :weight bold :foreground ,heading-1 :height 1.30)))
+   `(message-cited-text-2           ((,class :font ,haki-heading-font :weight bold :foreground ,heading-2 :height 1.25)))
+   `(message-cited-text-3           ((,class :font ,haki-heading-font :weight bold :foreground ,heading-3 :height 1.20)))
+   `(message-cited-text-4           ((,class :font ,haki-heading-font :weight bold :foreground ,heading-4 :height 1.15)))
+   `(message-header-name            ((,class :height 0.9 :foreground ,info-doc)))
    `(message-header-newsgroups      ((,class :inherit message-header-other)))
    `(message-header-to              ((,class :font ,haki-sans-font :inherit bold :slant italic :height 1.5 :foreground ,heading-1)))
    `(message-header-cc              ((,class :foreground ,c-var)))
@@ -745,7 +781,7 @@ Respected Only in GUI frame"
    `(header-line                    ((,class :height 0.9)))
 
 ;;; --- Info
-   `(Info-quoted            ((,class :inherit org-verbatim)))
+   `(Info-quoted            ((,class :inherit fixed-pitch :foreground ,verbatim)))
    `(info-header-node       ((,class :inherit (shadow bold) :foreground ,c-regexc)))
    `(info-xref-visited      ((,class :inherit link :foreground ,heading-6)))
    `(info-xref              ((,class :foreground ,clock)))
@@ -753,33 +789,33 @@ Respected Only in GUI frame"
    `(info-index-match       ((,class :inherit highlight)))
    `(info-menu-star         ((,class :foreground ,error)))
    `(info-node              ((,class :inherit bold)))
-   `(info-title-1           ((,class :inherit org-level-1)))
-   `(info-title-2           ((,class :inherit org-level-2)))
-   `(info-title-3           ((,class :inherit org-level-3)))
-   `(info-title-4           ((,class :inherit org-level-4)))
+   `(info-title-1           ((,class :font ,haki-heading-font :weight bold :foreground ,heading-1 :height 1.30)))
+   `(info-title-2           ((,class :font ,haki-heading-font :weight bold :foreground ,heading-2 :height 1.25)))
+   `(info-title-3           ((,class :font ,haki-heading-font :weight bold :foreground ,heading-3 :height 1.20)))
+   `(info-title-4           ((,class :font ,haki-heading-font :weight bold :foreground ,heading-4 :height 1.15)))
    `(info-menu-header       ((,class :foreground ,c-var)))
 
 ;;; --- helpful
-   `(helpful-heading          ((,class :inherit org-level-1)))
-   `(help-for-help-header     ((,class :inherit helpful-heading)))
-   `(help-key-binding         ((,class :inherit marginalia-key :background ,bg-dim)))
+   `(helpful-heading          ((,class :font ,haki-heading-font :weight bold :foreground ,heading-1 :height 1.30)))
+   `(help-for-help-header     ((,class :font ,haki-heading-font :weight bold :foreground ,heading-1 :height 1.30)))
+   `(help-key-binding         ((,class :inherit button)))
 
 ;;; --- customize
    `(custom-button       ((,class :inherit button)))
 
 ;;; --- popup-tip
-   `(popup-face         ((,class :inherit corfu-default)))
-   `(popup-tip-face     ((,class :inherit corfu-default :background ,bg-inactive)))
+   `(popup-face         ((,class :background ,bg-dim)))
+   `(popup-tip-face     ((,class :background ,bg-inactive)))
 
 ;;; --- Outline
-   `(outline-1          ((,class :inherit org-level-1)))
-   `(outline-2          ((,class :inherit org-level-2)))
-   `(outline-3          ((,class :inherit org-level-3)))
-   `(outline-4          ((,class :inherit org-level-4)))
-   `(outline-5          ((,class :inherit org-level-5)))
-   `(outline-6          ((,class :inherit org-level-6)))
-   `(outline-7          ((,class :inherit org-level-6 :foreground ,heading-7)))
-   `(outline-8          ((,class :inherit org-level-6 :foreground ,heading-8)))
+   `(outline-1          ((,class :font ,haki-heading-font :weight bold :foreground ,heading-1 :height 1.30)))
+   `(outline-2          ((,class :font ,haki-heading-font :weight bold :foreground ,heading-2 :height 1.25)))
+   `(outline-3          ((,class :font ,haki-heading-font :weight bold :foreground ,heading-3 :height 1.20)))
+   `(outline-4          ((,class :font ,haki-heading-font :weight bold :foreground ,heading-4 :height 1.15)))
+   `(outline-5          ((,class :font ,haki-heading-font :weight bold :foreground ,heading-5 :height 1.10)))
+   `(outline-6          ((,class :font ,haki-heading-font :weight bold :foreground ,heading-6 :height 1.10)))
+   `(outline-7          ((,class :font ,haki-heading-font :weight bold :foreground ,heading-7 :height 1.10)))
+   `(outline-8          ((,class :font ,haki-heading-font :weight bold :foreground ,heading-8 :height 1.10)))
 
 ;;; --- Vterm
    `(vterm-color-black            ((,class :background ,fg-comment :foreground ,fg-comment)))
@@ -822,14 +858,14 @@ Respected Only in GUI frame"
    `(eshell-ls-product            ((,class :inherit shadow)))
    `(eshell-ls-readonly           ((,class :foreground ,link)))
    `(eshell-ls-special            ((,class :foreground ,c-regexc)))
-   `(eshell-ls-symlink            ((,class :inherit dired-symlink)))
+   `(eshell-ls-symlink            ((,class :inherit button)))
    `(eshell-ls-unreadable         ((,class :inherit shadow)))
    `(eshell-prompt                ((,class :foreground ,heading-1)))
 
    ;; --- Ement
    `(ement-room-fully-read-marker       ((,class :inherit success)))
    `(ement-room-membership              ((,class :inherit shadow)))
-   `(ement-room-mention                 ((,class :inherit highlight :foreground ,blue-5)))
+   `(ement-room-mention                 ((,class :inherit highlight :foreground ,info-doc)))
    `(ement-room-name                    ((,class :inherit bold :foreground ,title)))
    `(ement-room-reactions               ((,class :inherit shadow)))
    `(ement-room-read-receipt-marker     ((,class :inherit match)))
@@ -843,59 +879,19 @@ Respected Only in GUI frame"
    `(erc-action-face                    ((,class :foreground ,c-keyword)))
    `(erc-bold-face                      ((,class :inherit bold)))
    `(erc-button                         ((,class :inherit button)))
-   ;; `(erc-command-indicator-face         ((,class :inherit bold :foreground ,cyan-alt)))
-   ;; `(erc-current-nick-face              ((,class :inherit bold :foreground ,red-alt)))
-   ;; `(erc-dangerous-host-face            ((,class :inherit modus-themes-intense-red)))
-   ;; `(erc-direct-msg-face                ((,class :foreground ,fg-special-warm)))
-   ;; `(erc-error-face                     ((,class :inherit bold :foreground ,red)))
    `(erc-fool-face                      ((,class :inherit shadow)))
-   ;; `(erc-header-line                    ((,class :background ,bg-header :foreground ,fg-header)))
+   `(erc-header-line                    ((,class :background ,bg-dim :foreground ,fg-main)))
    `(erc-input-face                     ((,class :foreground ,heading-1)))
-   ;; `(erc-inverse-face                   ((,class :inherit erc-default-face :inverse-video t)))
-   ;; `(erc-keyword-face                   ((,class :inherit bold :foreground ,magenta-alt-other)))
+   `(erc-keyword-face                   ((,class :inherit bold :foreground ,c-keyword)))
    `(erc-my-nick-prefix-face            ((,class :inherit erc-my-nick-face)))
    `(erc-nick-default-face              ((,class :inherit bold :foreground ,heading-7)))
    `(erc-my-nick-face                   ((,class :inherit bold :foreground ,c-string)))
    `(erc-nick-msg-face                  ((,class :inherit warning)))
    `(erc-nick-prefix-face               ((,class :inherit erc-nick-default-face)))
    `(erc-notice-face                    ((,class :inherit font-lock-comment-face)))
-   ;; `(erc-pal-face                       ((,class :inherit bold :foreground ,magenta-alt)))
-   ;; `(erc-prompt-face                    ((,class :inherit modus-themes-prompt)))
-   ;; `(erc-timestamp-face                 ((,class :foreground ,cyan)))
-   ;; `(erc-underline-face                 ((,class :underline t)))
-   ;; `(bg:erc-color-face0                 ((,class :background "white")))
-   ;; `(bg:erc-color-face1                 ((,class :background "black")))
-   ;; `(bg:erc-color-face10                ((,class :background ,cyan-subtle-bg)))
-   ;; `(bg:erc-color-face11                ((,class :background ,cyan-intense-bg)))
-   ;; `(bg:erc-color-face12                ((,class :background ,blue-subtle-bg)))
-   ;; `(bg:erc-color-face13                ((,class :background ,magenta-subtle-bg)))
-   ;; `(bg:erc-color-face14                ((,class :background "gray60")))
-   ;; `(bg:erc-color-face15                ((,class :background "gray80")))
-   ;; `(bg:erc-color-face2                 ((,class :background ,blue-intense-bg)))
-   ;; `(bg:erc-color-face3                 ((,class :background ,green-intense-bg)))
-   ;; `(bg:erc-color-face4                 ((,class :background ,red-subtle-bg)))
-   ;; `(bg:erc-color-face5                 ((,class :background ,red-intense-bg)))
-   ;; `(bg:erc-color-face6                 ((,class :background ,magenta-refine-bg)))
-   ;; `(bg:erc-color-face7                 ((,class :background ,yellow-subtle-bg)))
-   ;; `(bg:erc-color-face8                 ((,class :background ,yellow-refine-bg)))
-   ;; `(bg:erc-color-face9                 ((,class :background ,green-subtle-bg)))
-   ;; `(fg:erc-color-face0                 ((,class :foreground "white")))
-   ;; `(fg:erc-color-face1                 ((,class :foreground "black")))
-   ;; `(fg:erc-color-face10                ((,class :foreground ,cyan)))
-   ;; `(fg:erc-color-face11                ((,class :foreground ,cyan-alt-other)))
-   ;; `(fg:erc-color-face12                ((,class :foreground ,blue)))
-   ;; `(fg:erc-color-face13                ((,class :foreground ,magenta-alt)))
-   ;; `(fg:erc-color-face14                ((,class :foreground "gray60")))
-   ;; `(fg:erc-color-face15                ((,class :foreground "gray80")))
-   ;; `(fg:erc-color-face2                 ((,class :foreground ,blue-alt-other)))
-   ;; `(fg:erc-color-face3                 ((,class :foreground ,green)))
-   ;; `(fg:erc-color-face4                 ((,class :foreground ,red)))
-   ;; `(fg:erc-color-face5                 ((,class :foreground ,red-alt)))
-   ;; `(fg:erc-color-face6                 ((,class :foreground ,magenta-alt-other)))
-   ;; `(fg:erc-color-face7                 ((,class :foreground ,yellow-alt-other)))
-   ;; `(fg:erc-color-face8                 ((,class :foreground ,yellow-alt)))
-   ;; `(fg:erc-color-face9                 ((,class :foreground ,green-alt-other)))
-
+   `(erc-prompt-face                    ((,class :foreground ,c-keyword)))
+   `(erc-timestamp-face                 ((,class :foreground ,date)))
+   `(erc-underline-face                 ((,class :underline t)))
 
 ;;; --- nano modeline
    `(nano-modeline-active-status-RW     ((,class :inherit region :foreground ,fg-main)))
@@ -909,11 +905,11 @@ Respected Only in GUI frame"
    `(magit-bisect-bad                ((,class :inherit error)))
    `(magit-bisect-good               ((,class :inherit success)))
    `(magit-bisect-skip               ((,class :inherit warning)))
-   `(magit-blame-date                (( )))
+   `(magit-blame-date                ((,class :foreground ,date )))
    `(magit-blame-dimmed              ((,class :inherit shadow)))
-   `(magit-blame-hash                (( )))
+   `(magit-blame-hash                ((,class :foreground ,c-const )))
    `(magit-blame-highlight           ((,class :background ,bg-main :foreground ,fg-main)))
-   `(magit-blame-name                (( )))
+   `(magit-blame-name                ((,class :font ,haki-sans-font :foreground ,info-doc )))
    `(magit-blame-summary             ((  )))
    `(magit-branch-local              ((,class :foreground ,c-property)))
    `(magit-branch-remote             ((,class :foreground ,c-warning)))
@@ -948,7 +944,7 @@ Respected Only in GUI frame"
    `(magit-header-line-key                 ((,class :inherit help-key-binding)))
    `(magit-header-line-log-select          ((,class :inherit bold)))
    `(magit-keyword                         ((,class :foreground ,c-keyword)))
-   `(magit-keyword-squash                  ((,class :inherit bold :foreground ,c-warning)))
+   `(magit-keyword-squash                  ((,class :inherit warning)))
    `(magit-log-author                      ((,class :inherit message-header-name)))
    `(magit-log-date                        ((,class :foreground ,clock)))
    `(magit-log-graph                       ((,class :inherit shadow)))
@@ -962,7 +958,7 @@ Respected Only in GUI frame"
    `(magit-reflog-commit                   ((,class :inherit bold)))
    `(magit-reflog-merge                    ((,class :inherit success)))
    `(magit-reflog-other                    ((,class :inherit bold :foreground ,c-var)))
-   `(magit-reflog-rebase                   ((,class :inherit bold :foreground ,yellow-5)))
+   `(magit-reflog-rebase                   ((,class :inherit bold :foreground ,warning)))
    `(magit-reflog-remote                   ((,class :inherit (bold magit-branch-remote))))
    `(magit-reflog-reset                    ((,class :inherit error)))
    `(magit-refname                         ((,class :inherit shadow)))
@@ -988,7 +984,7 @@ Respected Only in GUI frame"
    `(magit-signature-good                  ((,class :inherit success)))
    `(magit-signature-revoked               ((,class :inherit bold :foreground ,c-warning)))
    `(magit-signature-untrusted             ((,class :inherit (bold shadow))))
-   `(magit-tag                             ((,class )))
+   `(magit-tag                             ((,class :background ,bg-tag :foreground ,bg-main)))
 
 ;;; --- Transient
    `(transient-key                         ((,class :inherit help-key-binding)))
@@ -1049,7 +1045,7 @@ Respected Only in GUI frame"
    `(meow-normal-indicator                   ((,class :weight ultra-bold :foreground ,title)))
    `(meow-normal-cursor                      ((,class :background ,title)))
    `(meow-search-indicator                   ((,class :foreground ,c-regexb)))
-   `(meow-search-highlight                   ((,class :inherit jinx-highlight)))
+   `(meow-search-highlight                   ((,class :inherit highlight)))
    `(meow-position-highlight-number          ((,class :foreground ,cursor)))
    `(meow-position-highlight-number-1        ((,class :inherit meow-position-highlight-number)))
    `(meow-position-highlight-number-2        ((,class :inherit meow-position-highlight-number)))
@@ -1057,21 +1053,21 @@ Respected Only in GUI frame"
    `(meow-cheatsheet-highlight               ((,class :inherit (fixed-pitch) :height 0.7 :foreground ,c-var)))
 
 ;;; --- evil (just modeline)
-   `(doom-modeline-evil-emacs-state      ((,class :inherit org-verbatim)))
-   `(doom-modeline-evil-insert-state     ((,class :inherit meow-insert-indicator)))
-   `(doom-modeline-evil-normal-state     ((,class :inherit meow-normal-indicator)))
-   `(doom-modeline-evil-visual-state     ((,class :inherit meow-normal-indicator :foreground ,c-string)))
-   `(doom-modeline-evil-operator-state   ((,class :inherit meow-beacon-indicator)))
-   `(doom-modeline-evil-motion-state     ((,class :inherit meow-motion-indicator)))
-   `(doom-modeline-evil-replace-state    ((,class :inherit meow-normal-indicator :foreground ,c-var)))
+   `(doom-modeline-evil-emacs-state      ((,class :foreground ,verbatim)))
+   `(doom-modeline-evil-insert-state     ((,class :weight bold :foreground ,heading-4)))
+   `(doom-modeline-evil-normal-state     ((,class :weight bold :foreground ,title)))
+   `(doom-modeline-evil-visual-state     ((,class :inherit doom-modeline-evil-normal-state :foreground ,c-string)))
+   `(doom-modeline-evil-operator-state   ((,class :height 1.0 :weight bold :foreground ,heading-5)))
+   `(doom-modeline-evil-motion-state     ((,class :weight bold :foreground ,heading-2)))
+   `(doom-modeline-evil-replace-state    ((,class :inherit doom-modeline-evil-normal-state :foreground ,c-var)))
 
 ;;; --- Avy
-   `(avy-background-face                 ((,class :background ,bg-main :foreground ,fg-comment :extend t)))
+   `(avy-background-face                 ((,class :foreground ,fg-comment :extend t)))
    `(avy-goto-char-timer-face            ((,class :inherit bold :background ,bg-inactive :foreground ,clock)))
-   `(avy-lead-face                       ((,class :weight ultra-bold :foreground ,fg-main :background ,haki-region)))
-   `(avy-lead-face-0                     ((,class :inherit avy-lead-face :background ,heading-8)))
-   `(avy-lead-face-1                     ((,class :inherit avy-lead-face :background ,c-regexc)))
-   `(avy-lead-face-2                     ((,class :inherit (avy-lead-face) :background ,c-builtin)))
+   `(avy-lead-face                       ((,class :weight bold :inherit region)))
+   `(avy-lead-face-0                     ((,class :inherit avy-lead-face :background ,title)))
+   `(avy-lead-face-1                     ((,class :inherit avy-lead-face :background ,heading-1)))
+   `(avy-lead-face-2                     ((,class :inherit (avy-lead-face) :background ,heading-2)))
 
 ;;; --- Man
    `(Man-overstrike                      ((,class :inherit bold :foreground ,heading-1)))
@@ -1084,8 +1080,8 @@ Respected Only in GUI frame"
 
 ;;; --- tab-bar
    `(tab-bar                             ((,class :background ,bg-main)))
-   `(tab-bar-tab-group-current           ((,class :box (:line-width (2 . -2) :color "gray50"))))
-   `(tab-bar-tab-group-inactive          ((,class :box (:line-width (2 . -2) :color "gray50"))))
+   `(tab-bar-tab-group-current           ((,class :box (:line-width (2 . -2) :color ,cursor))))
+   `(tab-bar-tab-group-inactive          ((,class :box (:line-width (2 . -2) :color ,cursor))))
    `(tab-bar-tab                         ((,class :inherit region)))
    `(tab-bar-tab-inactive                ((,class :inherit mode-line-inactive)))
    `(tab-line                            ((,class :background ,bg-main)))
@@ -1115,20 +1111,22 @@ Respected Only in GUI frame"
 
 ;;; --- dashboard
    `(dashboard-heading                          ((,class :font ,haki-heading-font :weight bold :foreground ,heading-1)))
-   `(dashboard-banner-logo-title-face           ((,class :inherit dashboard-heading :foreground ,title)))
+   `(dashboard-banner-logo-title-face           ((,class :inherit dashboard-heading :foreground ,title :height 1.2)))
    `(dashboard-items-face                       ((,class )))
+   `(dashboard-navigator                        ((,class :foreground ,c-keyword)))
 
 ;;; --- mini-echo
    `(mini-echo-time                             ((,class :foreground ,clock)))
-   `(mini-echo-battery                          ((,class :foreground ,c-keyword)))
+   `(mini-echo-battery                          ((,class :foreground ,date)))
 
 ;;; --- vundo
    `(vundo-default                              ((,class :inherit default)))
-   `(vundo-node                                 ((,class )))
+   `(vundo-node                                 ((,class :foreground ,fg-dim)))
+   `(vundo-stem                                 ((,class :foreground ,fg-inactive)))
    `(vundo-saved                                ((,class :inherit bold :foreground ,code)))
    `(vundo-last-saved                           ((,class :inherit bold :foreground ,c-keyword)))
    ;; `(vundo-branch-stem                          ((,class :inherit ,c-type)))
-   `(vundo-highlight                            ((,class :inherit (bold vundo-node) :foreground ,link)))))
+   `(vundo-highlight                            ((,class :foreground ,link)))))
 
 ;;;###autoload
 (when (and (boundp 'custom-theme-load-path) load-file-name)
