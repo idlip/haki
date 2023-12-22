@@ -38,11 +38,6 @@
 (unless (>= emacs-major-version 27)
   (error "Haki theme requires Emacs 27.1 or later!"))
 
-(eval-when-compile
-  (require 'cl-lib)
-  (require 'subr-x))
-(require 'color)
-
 (deftheme haki "An Elegant, tailored theme for Modern Emacs.")
 
 (defgroup haki-theme ()
