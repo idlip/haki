@@ -107,17 +107,8 @@ Since its new, there is not much, but I do have some surprise!
  ~export COLORTERM=truecolor~
 
   - Heading level will be similar everywhere (/org,markdown,eww,shr,info,news../), every heading faces inherit corresponding org-level.
-    Editing org-level face will follow to all modes having heading, define your choice of font for heading.
-
-    Eg:
-  #+begin_src emacs-lisp
-    ; Font for each level
-    (set-face-attribute 'org-level-1 nil :font "Impress BT")
-
-    ; Add fg and a face
-    (set-face-attribute 'org-level-1 nil :font "Excalibur Stone" :foreground "#ab82ff")
-
-#+end_src
+    So if you don't see those styles in any mode, please note that you may have to load =org-mode=.
+    Will try to make it not depend on org-mode if possible.
 
  - For meow/evil users, there is ~#'haki-modal-mode-line~ which can change the border (=:box=) of the mode-line according to the meow-states, with this hook:
 
