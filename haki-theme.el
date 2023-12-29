@@ -391,7 +391,7 @@ Respected Only in GUI frame"
    `(org-verse                               ((,class :inherit org-quote :slant normal)))
 
 
-   `(org-scheduled                           ((,class :foreground ,todo)))
+   `(org-scheduled                           ((,class :inherit highlight :background ,todo)))
    `(org-scheduled-previously                ((,class :inherit highlight :background ,error)))
    `(org-scheduled-today                     ((,class :inherit highlight)))
    `(org-sexp-date                           ((,class :foreground ,date)))
@@ -802,7 +802,8 @@ Respected Only in GUI frame"
    `(help-key-binding         ((,class :inherit button)))
 
 ;;; --- customize
-   `(custom-button       ((,class :inherit button)))
+   `(custom-button            ((,class :inherit button)))
+   `(custom-button-unraised   ((,class :box t :background ,bg-dim)))
 
 ;;; --- popup-tip
    `(popup-face         ((,class :background ,bg-dim)))
@@ -866,7 +867,7 @@ Respected Only in GUI frame"
    ;; --- Ement
    `(ement-room-fully-read-marker       ((,class :inherit success)))
    `(ement-room-membership              ((,class :inherit shadow)))
-   `(ement-room-mention                 ((,class :inherit highlight :foreground ,info-doc)))
+   `(ement-room-mention                 ((,class :inherit highlight)))
    `(ement-room-name                    ((,class :inherit bold :foreground ,title)))
    `(ement-room-reactions               ((,class :inherit shadow)))
    `(ement-room-read-receipt-marker     ((,class :inherit match)))
