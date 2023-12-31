@@ -9,16 +9,16 @@
 #+html: <a href="https://www.gnu.org/software/emacs/"><img alt="GNU Emacs" src="https://github.com/minad/corfu/blob/screenshots/emacs.svg?raw=true"/></a>
 #+html: <a href="https://melpa.org/#/haki-theme"><img alt="MELPA" src="https://melpa.org/packages/haki-theme-badge.svg"/></a>
 
-* 🎨 Table of Palette :toc:
-- [[#-info][🔖 Info]]
-  - [[#-modes-supported][⚓ Modes Supported]]
-  - [[#-gallery][🎪 Gallery]]
-- [[#-installation][✨ Installation]]
-- [[#-tips][💲 Tips]]
-- [[#-contributing][🔗 Contributing]]
-- [[#️-inspiration][🎖️ Inspiration]]
+* Table of Palette :toc:
+- [[#-info][Info]]
+  - [[#-modes-supported][Modes Supported]]
+  - [[#-gallery][Gallery]]
+- [[#-installation][Installation]]
+- [[#-tips][Tips]]
+- [[#-contributing][Contributing]]
+- [[#-inspiration][Inspiration]]
 
-* 🔖 Info
+* Info
 
 # haki
 #+html: <img src="https://github.com/idlip/haki/assets/117019901/8bc8ca2d-a324-45c2-8786-1534107f26db" align="right" width="45%">
@@ -34,7 +34,7 @@ As a new theme, I have two things in my mind:
 + If community or many users, like the theme, I might go tweak and add more goodies.
 + If there is not much appreciation, I might modify and improve some pastel colors.
 
-** ⚓ Modes Supported
+** Modes Supported
 #+HTML: <details> <summary> Packages & Modes </summary>
 - Vertico, Corfu, Consult, Orderless, Marginalia
 - Magit, diff
@@ -47,7 +47,7 @@ As a new theme, I have two things in my mind:
 - Which-key
 - Org-mode
 - Markdown-mode
-- Eww, shr
+- Eww, shr, shrface
 - Doom-Modeline
 - Rainbow-Delimiters
 - Jinx
@@ -64,11 +64,11 @@ You can open an issue for requesting a ~mode~ or ~package~. I will try to implem
 
 #+HTML: </details>
 
-** 🎪 Gallery
+** Gallery
 
 [[file:gallery.org][Eye candy Gallery]]
 
-* ✨ Installation
+* Installation
 Theme is available in MELPA.
 #+begin_src emacs-lisp
 ;; Option 1: Simply do (make sure it is in 'custom-theme-directory')
@@ -93,7 +93,7 @@ Theme is available in MELPA.
 
 #+end_src
 
-* 💲 Tips
+* Tips
 Since its new, there is not much, but I do have some surprise!
 
   - Since regions cover everywhere, you can customize it to your preference.
@@ -119,7 +119,7 @@ Since its new, there is not much, but I do have some surprise!
  - Just like a theme, if you are looking to try new font. I can suggest you to check [[https://github.com/arrowtype/recursive][Recursive font]]
    I use (fork) them patched with nerd icons in OnePiece style naming, check out [[https:github.com/idlip/code-d-font][Code D Font]]
 
-* TODO 📚 Plan
+* TODO Plan
 - [X] Avoid too much =:inherit= in faces.
 - [ ] Test full picture on =org-agenda=.
 - [ ] Make it to not conflict with user's customization at all.
@@ -134,21 +134,21 @@ Since its new, there is not much, but I do have some surprise!
 - Fixed lot of inherit faces, fix inherit to not depend on external package.
 - Tried to minimize =:inherit= as there should be minimal conflict with user's customization.
 - Most of the faces depended on =org-mode=, fixed it. So others may not wait until org-mode is loaded.
-* 🔗 Contributing
+* Contributing
 There's always a space for improvement.
  + If you want to open an *issue*, Please attach a pic of the issue state.
  + If you want to make a *PR*, Please attach pic of before and after effects.
 
    This will allow me to consider and evaluate.
 
-* 🎖️ Inspiration
+* Inspiration
   - [[https://github.com/protesilaos/modus-themes][Prot's themes]] - I'm a fan of ~modus-vivendi~, but it lacked something for me, it simply lead me to create this theme. Nonetheless, Modus themes is a *Masterpiece*.
   - [[https://github.com/minad][Minad]] - If it were not for his packages, I wouldn't have loved Emacs this much to create a theme.
     Absolute gem! Most of the theme's customization is based on his packages.
 
     -----
 
-* 🎉 Shout Outs
+* Shout Outs
 Thank you for the shout out and Appreciations!
 But note: I have just randomly chosen colors, it is not defined with any criteria.
 
