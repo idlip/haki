@@ -621,7 +621,7 @@ Respected Only in GUI frame"
 
 ;;; --- Shr
    `(shr-abbreviation     ((,class :weight bold :foreground ,info-doc)))
-   `(shr-code             ((,class :inherit (fixed-pitch) :background ,bg-inactive)))
+   `(shr-code             ((,class :font ,haki-code-font :weight medium :height 1.1 :foreground ,code)))
    `(shr-h1               ((,class :font ,haki-title-font :weight bold :height 1.8 :foreground ,title)))
    `(shr-h2               ((,class :font ,haki-heading-font :weight bold :foreground ,heading-1 :height 1.30)))
    `(shr-h3               ((,class :font ,haki-heading-font :weight bold :foreground ,heading-2 :height 1.25)))
@@ -631,6 +631,10 @@ Respected Only in GUI frame"
    `(shr-selected-link    ((,class :inherit link :slant italic)))
    `(shr-link             ((,class :inherit link)))
    `(shr-text             ((,class :inherit variable-pitch-text)))
+
+;;; --- shrface
+   `(shrface-figure       ((,class :inherit (org-table variable-pitch-text))))
+   `(shrface-code         ((,class :inherit org-code)))
 
 ;;; --- eww
    `(eww-invalid-certificate      ((,class :foreground ,error)))
