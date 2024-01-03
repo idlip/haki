@@ -65,7 +65,7 @@ Do make sure to set foreground, so it is contrasts background."
   :group 'haki-theme)
 
 (defface haki-highlight
-  '((t (:background "#fafad2" :foreground "#1a1a1a")))
+  '((t (:background "#fafad2" :foreground "#000000")))
   "Face for highlighting in sensible areas."
   :group 'haki-theme)
 

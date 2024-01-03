@@ -78,8 +78,8 @@ Theme is available in MELPA.
 ;; Option 2: with 'use-package'
 (use-package haki-theme
   :custom-face
-  (haki-region ((t (:background "#9f79ee" :foreground "#000000"))))
-  (haki-highlight ((t (:background "#cdcdb4" :foreground "#000000"))))
+  (haki-region ((t (:background "#2e8b57" :foreground "#ffffff"))))
+  (haki-highlight ((t (:background "#fafad2" :foreground "#000000"))))
   :config
   (setq
    ;; If you skip setting this, it will use 'default' font.
