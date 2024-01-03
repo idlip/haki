@@ -72,9 +72,9 @@ Do make sure to set foreground, so it is contrasts background."
 (defun haki-change-region ()
   "Interactively choose a COLOR to set it as `haki-region'."
   (interactive)
-  (let* ((choice (string-trim (read-color))))
-    (set-face-attribute 'haki-region nil :background choice))
-    (load-theme 'haki t))
+  (let* ((bg-choice (string-trim (read-color "Background Color: " t)))
+         (fg-choice (string-trim (read-color "Foreground Color: " t))))
+    (set-face-attribute 'haki-region nil :background bg-choice :foreground fg-choice)))
 
 ;;; --- Variables to use different fonts
 (defcustom haki-code-font `unspecified' ;; we can use it for both verbatim and code face
