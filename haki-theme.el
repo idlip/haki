@@ -136,7 +136,7 @@ Tip: Use 'VictorMono' or 'Maple Mono'."
       (fg-dim        "#D8DEE9")
       (fg-inactive   "#6c7b8b")
       ;; (fg-region     haki-region)
-      (cursor        "#ffe4e1")
+      (cursor        "#8470ff")
 
       ;; --- Common logics
       (error      "#ee6363")
