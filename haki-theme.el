@@ -92,8 +92,8 @@ Do make sure to set foreground, so it is contrasts background."
 (defun haki-change-region ()
   "Interactively choose a COLOR to set it as `haki-region'."
   (interactive)
-  (let* ((bg-choice (string-trim (read-color "Background Color: " t)))
-         (fg-choice (string-trim (read-color "Foreground Color: " t))))
+  (let* ((bg-choice (string-trim (read-color "Region Background Color: " t)))
+         (fg-choice (string-trim (read-color "Region Foreground Color: " t))))
     (set-face-attribute 'haki-region nil :background bg-choice :foreground fg-choice)))
 
 ;;; --- Variables to use different fonts
@@ -286,7 +286,7 @@ Respected Only in GUI frame"
    `(highlight                 ((,class :inherit (bold haki-highlight))))
    `(fixed-pitch-serif         ((,class :inherit default)))
    `(variable-pitch            ((,class )))
-   `(cursor                    ((,class :background ,cursor)))
+   `(cursor                    ((,class :background ,cursor :foreground ,fg-main)))
    `(hl-line                   ((,class :background ,bg-inactive :extend t)))
    `(link                      ((,class :font ,haki-link-font  :weight medium :underline t :foreground ,link)))
    `(button                    ((,class :inherit (bold link) :foreground ,c-operator)))
@@ -1135,6 +1135,12 @@ Respected Only in GUI frame"
    `(vundo-last-saved                           ((,class :inherit bold :foreground ,c-keyword)))
    ;; `(vundo-branch-stem                          ((,class :inherit ,c-type)))
    `(vundo-highlight                            ((,class :foreground ,link)))))
+
+(custom-theme-set-variables
+ 'haki
+ `(flymake-note-bitmap       '(exclamation-mark flymake-note-echo))
+ `(flymake-error-bitmap      '(flymake-double-exclamation-mark flymake-error-echo))
+ `(flymake-warning-bitmap    '(exclamation-mark flymake-warning-echo)))
 
 ;;;###autoload
 (when (and (boundp 'custom-theme-load-path) load-file-name)
