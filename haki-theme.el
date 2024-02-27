@@ -458,7 +458,7 @@ Respected Only in GUI frame"
    `(org-modern-date-inactive                ((,class :foreground ,bg-inactive :background ,fg-comment)))
 
 ;;; --- Olivetti (No fringe, so it looks good)
-   `(fringe          ((,class :foreground ,bg-main)))
+   `(fringe          ((,class :inherit default)))
    `(olivetti-fringe ((,class :inherit fringe)))
 
 ;;; --- Rainbow delimiters (parenthesis world)
