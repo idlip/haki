@@ -170,7 +170,7 @@ Tip: Use 'VictorMono' or 'Maple Mono'."
       (bg-tag     "#ffe1ff")
       (bracket    "#ffeeee")
       (date       "#8ee5ee")
-      (info-doc   "#bcd2ee")
+      (info-doc   "#76eec6")
 
       ;; --- Colours are named in order from 1 --> 5
       ;; --- 1 as pale, and progressively intense, 5 as dark
