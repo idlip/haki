@@ -2,11 +2,10 @@
 #+author: Dilip
 
 ** Specs
-- Font: [[https://github.com/arrowtype/recursive][Recursive Font]], Formerly was using Comic Code
+- Font: [[https://github.com/arrowtype/recursive][Recursive Font]]
 - Emacs: 29 with Pure-Gtk
 - WM: Hyprland (wayland)
-- Emacs org config: [[https://github.com/idlip/d-nix/tree/onepiece/home/programs/d-emacs][modular-config]]
-- OS: Nixos. [[https://github.com/idlip/d-nix][dotfiles]]
+- Dots: NixOS + Emacs in [[https://github.com/idlip/d-nix/blob/gol-d/d-setup.org][literate Org Config]]
 
 ** Haki region
 on the fly change of region color, applies for vertico, corfu, current line number..
