@@ -371,8 +371,8 @@ Respected Only in GUI frame"
    `(org-archived                            ((,class :foreground ,fg-dim)))
 
    `(org-block                               ((,class :inherit fixed-pitch :background ,bg-inactive)))
-   `(org-block-begin-line                    ((,class :inherit org-block :overline ,cursor :weight semi-bold :height 0.9)))
-   `(org-block-end-line                      ((,class :inherit org-block-begin-line :overline nil :underline ,cursor)))
+   `(org-block-begin-line                    ((,class :inherit org-block :weight semi-bold :height 0.9)))
+   `(org-block-end-line                      ((,class :inherit org-block-begin-line)))
    `(org-inline-src-block                    ((,class :box ,cursor :height 0.8)))
 
    `(org-checkbox                            ((,class :weight bold :foreground ,clock)))
