@@ -292,6 +292,7 @@ Respected Only in GUI frame"
    `(link                      ((,class :font ,haki-link-font  :weight medium :underline t :foreground ,link)))
    `(button                    ((,class :inherit (bold link) :foreground ,c-operator)))
    `(separator-line            ((,class :inherit underline)))
+   `(shadow                    ((,class :foreground ,fg-comment)))
 
    ;; --- completions
    `(completions-annotations         ((,class :inherit italic :foreground ,warning)))
@@ -419,7 +420,7 @@ Respected Only in GUI frame"
    `(org-special-keyword                     ((,class :foreground ,fg-inactive)))
    `(org-table                               ((,class :inherit fixed-pitch :foreground ,c-string)))
    `(org-table-header                        ((,class :inherit org-table :foreground ,title )))
-   `(org-tag                                 ((,class :height 0.9 :box ,cursor :background ,bg-tag :foreground ,bg-main)))
+   `(org-tag                                 ((,class :height 0.9 :background ,bg-tag :foreground ,bg-main)))
    `(org-tag-group                           ((,class :background ,cursor)))
    `(org-target                              ((,class :inherit button)))
    `(org-time-grid                           ((,class :foreground ,clock)))
@@ -427,7 +428,7 @@ Respected Only in GUI frame"
    `(org-warning                             ((,class :inherit font-lock-warning-face)))
    `(org-agenda-calendar-event               ((,class :foreground ,info-doc)))
    `(org-agenda-calendar-sexp                ((,class :inherit org-agenda-calendar-event)))
-   `(org-agenda-clocking                     ((,class :foreground ,clock)))
+   `(org-agenda-clocking                     ((,class :background ,clock)))
    `(org-agenda-column-dateline              ((,class :foreground ,date)))
    `(org-agenda-current-time                 ((,class :background ,clock :foreground ,bg-main)))
    `(org-agenda-date                         ((,class :foreground ,date)))
@@ -985,6 +986,12 @@ Respected Only in GUI frame"
    `(gnus-summary-normal-unread               (( )))
    `(gnus-summary-selected                    ((,class :inherit highlight)))
 
+;;; --- newsticker
+   `(newsticker-treeview-selection-face       ((,class :inherit highlight)))
+   `(newsticker-feed-face                     ((,class :inherit bold)))
+   `(newsticker-treeview-old-face             ((,class :inherit shadow)))
+   `(newsticker-treeview-new-face             ((,class :inherit bold)))
+
 ;;; --- nano modeline
    `(nano-modeline-active-status-RW     ((,class :inherit region :foreground ,fg-main)))
    `(nano-modeline-active-status-**     ((,class :inherit region :foreground ,fg-dim)))
@@ -1172,6 +1179,10 @@ Respected Only in GUI frame"
    `(centaur-tabs-selected-modified             ((,class :inherit (italic centaur-tabs-selected))))
    `(centaur-tabs-unselected                    ((,class :background ,bg-dim :foreground ,fg-comment)))
    `(centaur-tabs-unselected-modified           ((,class :inherit (italic centaur-tabs-unselected))))
+
+;;; --- battery
+   `(battery-load-low         ((,class :inherit highlight)))
+   `(battery-load-critical    ((,class :inherit error)))
 
 ;;; --- solaire-mode
    `(solaire-default-face                       ((,class :inherit default :background ,bg-dim)))
